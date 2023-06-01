@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2023.4.6)  30 MAY 2023 05:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2023.4.6)  1 JUN 2023 04:16
 entering extended mode
 **./analyse_donnée.tex
 (analyse_donnée.tex
@@ -524,6 +524,10 @@ File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 \pgfpie@sliceLength=\count286
 ))
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarybabel.code.tex
+File: tikzlibrarybabel.code.tex 2020/01/08 v3.1.5b (3.1.5b)
+)
+(C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarydecorations.markings.code.tex
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarydecorations.code.tex
@@ -691,23 +695,23 @@ File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
 ) (analyse_donnée.aux)
 \openout1 = `analyse_donnée.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Info: Redefining \degres on input line 26.
-LaTeX Info: Redefining \dots on input line 26.
-LaTeX Info: Redefining \up on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Info: Redefining \degres on input line 28.
+LaTeX Info: Redefining \dots on input line 28.
+LaTeX Info: Redefining \up on input line 28.
  ABD: EveryShipout initializing macros
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -736,36 +740,40 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.17}).
 [1
 
 {C:/Users/flori/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
-Package pgfplots info on input line 139: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 154: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
-PGFPlots: reading {graphs/semaine_type.txt}
-LaTeX Font Info:    Trying to load font information for U+msa on input line 141
+PGFPlots: reading {graphs/evolution_annee.txt}
+LaTeX Font Info:    Trying to load font information for U+msa on input line 156
 .
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 141
+LaTeX Font Info:    Trying to load font information for U+msb on input line 156
 .
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Overfull \hbox (4.94455pt too wide) in paragraph at lines 157--158
+ [][] 
+ []
+
 [3]
+Package pgfplots info on input line 187: Using 'lua backend=false' for axis: x 
+coord trafo unsupported.
+PGFPlots: reading {graphs/semaine_type.txt}
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4] [5]
 PGFPlots: reading {graphs/Temps_de_trajet_moins_VA.txt}
 Missing character: There is no ; in font nullfont!
 PGFPlots: reading {graphs/Temps_de_trajet_lisse.txt}
 Missing character: There is no ; in font nullfont!
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[4]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (6.50041pt too wide) in paragraph at lines 227--228
+ [6]
+Overfull \hbox (6.50041pt too wide) in paragraph at lines 278--279
 []\T1/cmr/m/n/12 Le choix d'une loi log-normale est confirm� par l'�tude des gr
 aphes quantile-
  []
@@ -774,46 +782,39 @@ PGFPlots: reading {graphs/Qplot_log_normal.txt}
 PGFPlots: reading {graphs/Qplot_gamma.txt}
 PGFPlots: reading {graphs/Qplot_weibull.txt}
 PGFPlots: reading {graphs/Qplot_log_normal.txt}
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[5]
 PGFPlots: reading {graphs/Temps_de_trajet_lisse.txt}
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 PGFPlots: reading {graphs/Temps_de_trajet_ajustement_lois.txt}
 Missing character: There is no ; in font nullfont!
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+[7]
 PGFPlots: reading {graphs/distribution_nb_voitures_par_station.txt}
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[6] [7]
+ [8] [9]
+PGFPlots: reading {graphs/Temps_annulation.txt}
+Missing character: There is no ; in font nullfont!
 PGFPlots: reading {graphs/Temps_annulation.txt}
 Missing character: There is no ; in font nullfont!
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8]
-PGFPlots: reading {graphs/Temps_annulation.txt}
-Missing character: There is no ; in font nullfont!
- [9] [10] (analyse_donnée.aux) )
+[10] [11] (analyse_donnée.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 79 ({)
+### simple group (level 1) entered at line 96 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 25945 strings out of 480777
- 657708 string characters out of 2897060
- 11745547 words of memory out of 13000000
- 41527 multiletter control sequences out of 15000+600000
+ 25955 strings out of 480777
+ 658243 string characters out of 2897060
+ 2116228 words of memory out of 3000000
+ 41532 multiletter control sequences out of 15000+600000
  543736 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,19n,127p,782b,2297s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,19n,127p,742b,2281s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/c
 m-super/cm-super-t1.enc}<C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmex10.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/
@@ -832,9 +833,9 @@ fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/flori/AppData/Local/Programs
 Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0600.pfb><C:/Users/flori/AppDat
 a/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/flor
 i/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on analyse_donnée.pdf (10 pages, 374058 bytes).
+Output written on analyse_donnée.pdf (11 pages, 433518 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
+ 102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

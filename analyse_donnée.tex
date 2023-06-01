@@ -8,8 +8,9 @@
 \usepackage{amsthm}
 \usepackage{pgf-pie}  
 
-
 \usepackage{tikz}
+\usetikzlibrary{babel}
+
 \usetikzlibrary{decorations.markings}
 \usepackage{pgfplots}
 \usetikzlibrary{arrows,calc}
@@ -22,6 +23,7 @@
 \newtheorem{theorem}{Theorem}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\renewcommand{\thefigure}{\arabic{figure}}
 
 \begin{document}
 
@@ -29,20 +31,17 @@
 \subsection{Principe général de Communauto}
 Communauto est un service basé dans différentes villes, principalement au Canada mais également à Paris, qui propose de la location de voitures sous deux formules :
 \begin{description}
-\item[free-floating:] les utilisateurs peuvent utiliser une voiture garée dans l'espace public afin d'effectuer un trajet d'un point A à un point B, tout en restant dans la zone de service de Communauto. Cette formule est principalement destiné aux trajets quotidiens, par exemple entre le domicile et le lieu de travail.
+\item[free-floating:] les utilisateurs peuvent utiliser une voiture garée dans l'espace public afin d'effectuer un trajet d'un point A à un point B, tout en restant dans la zone de service de Communauto. Cette formule est principalement destinée aux trajets quotidiens, par exemple entre le domicile et le lieu de travail.
 \item[basé-station:] les utilisateurs peuvent utiliser une voiture garée dans l'une des nombreuses stations réparties dans la ville afin d'effectuer un trajet puis de ramener la voiture à la station de départ. Cette formule est plus destinée aux plus long trajets, planifiés à l'avance, par exemple dans le cadre de voyages sur le week-end. 
 \end{description}
 
-Il est en plus possible pour les usagers de réserver un véhicule à l'avance pour les deux systèmes: le délai est de 30 minutes pour les voitures en free-floating et de 1 mois pour les voitures basés-stations.
+Ces deux systèmes partagent un même abonnement ainsi qu'un tarif identique après 4 heures d'utilisation, ce qui permet des interactions entre ces deux systèmes, par le report d'usager d'un système à l'autre en fonction de la disponibilité.
 
 \subsection{Fonctionnement du système et lexique utilisé}
 
-Dans la pratique, les usagers se connectent un certain instant afin de réserver une voiture dans le futur;
-les voitures basées-stations peuvent être réservées par créneaux jusqu'à un mois à l'avance tandis que les voitures en free-floating disponibles à cet instant peuvent être réservé jusqu'à 30 minutes à l'avance.
+Le moment où un usager réserve une voiture est appelé \emph{temps d'inscription}.
 
-Dans la suite, on parlera de \emph{temps de pré-réservation} pour le temps s'écoulant entre l'arrivée d'un usager et le début de sa réservation et de \emph{temps de réservation} (et non de temps de trajet) pour la durée de réservation elle-même (uniquement pour les voitures basées-station).
-
-
+Pour les deux systèmes, on peut séparer le temps entre l'arrivée d'un usager et son départ en deux: Le temps s'écoulant entre l'inscription d'une réservation et le début de la réservation est appelé \emph{temps de pré-réservation}, le \emph{temps de réservation} (et non temps de trajet) correspond lui à la durée de réservation elle-même.
 
 \begin{figure}[h]
 \centering
@@ -58,20 +57,38 @@ Dans la suite, on parlera de \emph{temps de pré-réservation} pour le temps s'�
 \caption{Schéma d'une réservation}
 \end{figure}
 
-Pour les voitures basées-station, il est également possible pour un usager d'annuler une réservation effectuée ou encore de rendre la voiture avant la fin annoncée de la réservation. Dans ce dernier cas, on parlera de \emph{fin de réservation anticipée} par opposition aux \emph{réservations menées à leur termes}
+
+\subsubsection{Système free-floating}
+
+Dans ce système, les usagers peuvent sélectionner une voiture disponible et la réserver. Une voiture réservée l'est alors pendant 30 minutes, temps pendant lequel le client peut se rendre à la voiture et la prendre. La réservation est automatiquement annulée au bout de 30 minutes si le client ne s'est pas présenté. Une fois la voiture récupérée, l'usager peut la garder aussi longtemps qu'il le souhaite avant de la libérer.
+
+Le temps de pré-réservation est ainsi inférieur à 30 minutes.
+
+\subsection{Système basé-stations}
+
+Dans ce système, les usagers se connectant à un certain instant peuvent sélectionner une voiture et réserver un créneau futur s'il est disponible. La réservation peut s'effectuer jusqu'à un mois à l'avance.
+
+Il est également possible pour un usager d'annuler une réservation effectuée ou encore de rendre la voiture avant la fin annoncée de la réservation. Dans ce dernier cas, on parlera de \emph{fin de réservation anticipée} par opposition aux \emph{réservations menées à leur termes}.
+
+Le temps de pré-réservation peut ainsi monter à 1 mois tandis que la durée de réservation, à la différence du free-floating, est défini dès le début même s'il peut être modifié par la suite.
+
+
+
+
+
 
 \section{Analyse de données}
 \subsection{Présentation des données}
 
-Grâce à un partenariat entre Communauto et Polytechnique Montréal, j'ai eu accès aux données correspondants aux réservations de voitures dans la ville de Montréal. 
-J'ai ainsi pu étudier les données correspondant à l'année 2021, comprenant  aussi bien les réservations effectuées sur les voitures en free-floating que sur celles en basés-stations, cela correspondant à respectivement à 973 819 et 441 871 réservations effectués soit 1 415 690 réservations au total.
+Grâce à un partenariat entre Communauto et Polytechnique Montréal, j'ai eu accès aux données correspondant aux réservations de voitures effectuées dans la ville de Montréal. 
+J'ai ainsi pu étudier les données de l'année 2021, comprenant  aussi bien les réservations effectuées sur les voitures en free-floating que sur celles en basés-stations, cela correspondant à respectivement à 69\% et 31\% des réservations effectués.
 
-Je disposais pour ces données d'un grand nombre de champ dont ceux que j'ai principalement utilisés sont les suivant:
+Je disposais pour ces données d'un grand nombre de champs dont ceux que j'ai principalement utilisés sont les suivant:
 \begin{itemize}
 \item la date et l'heure de début et de fin de la réservation
 \item la distance effectuée durant la réservation
-\item les points de départ et d'arrivé de la réservation, correspondant à la localisation de la station pour les basées-station
-\item d'autres informations relatives à l'utilisateur du service (genre, langage, ancienneté et adresse approximative notamment)
+\item les points de départ et d'arrivée de la réservation. Cela correspond à la localisation de la station pour les basées-station
+\item l'adresse approximative des usagers
 \item lorsque la réservation est annulée, la date d'annulation
 \item le statut de la réservation, parmi active, finie prématurément, annulée ou modifiée entre autres
 \end{itemize}
@@ -79,9 +96,8 @@ Je disposais pour ces données d'un grand nombre de champ dont ceux que j'ai pri
 On retrouve dans les données principalement des réservations {actives (menées à leur terme), annulées ou finies prématurément ainsi qu'un très petit nombre de réservations au statut spécial car effectuées par Communauto pour maintenance. Leur répartition est présentée figure~\ref{Répartition}.
 
 \begin{figure}[!h]
-\label{Répartition}
 \centering
-\begin{tikzpicture}[scale = 0.5]
+\begin{tikzpicture}[scale = 0.6]
 
 \pie[
     color = {
@@ -89,18 +105,17 @@ On retrouve dans les données principalement des réservations {actives (menées
         green!60!black,
         blue!60,
         red!70,
-        gray!70,
     }, 
     explode = 0.1
-]{46.7/Finies prématurèment,
+]{46.7/Finies prématurément,
     28.7/Menées à leur terme,
-    24/Anulées,
-    0/Modifiées,
+    24/Annulées,
     0.6/Autre
 }
 
 \end{tikzpicture}
-\caption{Répartition des statuts de réservations dans les données}
+\caption{Répartition des statuts des réservations basées-stations en 2021}
+\label{Répartition}
 \end{figure}
  	
  	
@@ -116,10 +131,43 @@ Suivant le paramètre étudié, j'ai pu avoir à filtrer selon le statut de la r
 
 \subsection{Fluctuations au cours du temps de la capacité utilisée}
 
-Je me suis intéressé aux comportement des usagers, pour voir notamment quelles périodes sont les plus prisées par les usagers. La figure~\ref{semaine_type} présente ainsi la capacité utilisée typique durant une semaine, obtenue en moyennant chaque jour de la semaine sur les 53 semaines de l'année 2021.
+
+Je me suis intéressé au comportement des usagers, pour voir notamment quelles périodes sont les plus prisées par les usagers.
+
+La figure~\ref{Année_sbcs} présente le nombre de voitures réservées tout au long de l'année afin d'avoir un premier aperçu des périodes pendant lesquelles les voitures basées-stations sont les plus utilisées. 
 
 \begin{figure}[!h]
-\label{semaine_type}
+\centering
+\begin{tikzpicture}
+       \begin{axis}[
+%unit vector ratio=1 45,
+date coordinates in=x,
+date ZERO= 2021-01-04,
+xticklabel = {\day.\month},
+xmin={2021-01-01}, ymin=0, xmax={2021-12-31}, ymax=1.1,
+ylabel={Nombre de voiture réservées (normalisé)},
+ylabel style={xshift=+9pt},
+xlabel={Jours},
+xlabel style={xshift=+9pt},
+width=1\linewidth,height=0.4\linewidth,
+grid=major,
+]
+\addplot[blue, line width=0.001pt, smooth] table[col sep=comma,trim cells=true,y=y]{graphs/evolution_annee.txt};
+\end{axis}
+\end{tikzpicture}
+\caption{Occupation du système au cours de l'année 2021}
+\label{Année_sbcs}
+\end{figure}
+
+Ce graphe permet d'identifier les périodes les plus importantes, qui sont par ordre décroissant les vacances d'été et de noël, où le minimum de réservation à un instant donné est particulièrement élevé, les autres vacances et weekends prolongés puis les week-ends.
+
+Ce graphe ne prend pas en compte les réservations ayant commencé avant 2021, ce qui explique le faible nombre de réservations début 2021 par rapport à 2021: il y a en réalité un grand nombre de longues réservations n'apparaissant par sur ces données.
+
+
+La figure~\ref{semaine_type} présente la capacité utilisée typique durant une semaine, obtenue en moyennant chaque jour de la semaine sur les 53 semaines de l'année 2021 et qui permet de voir plus finement ce qui se passe au cours d'une semaine.
+
+
+\begin{figure}[!h]
 \centering
 \begin{tikzpicture}[scale=0.4]
        \begin{axis}[
@@ -141,10 +189,13 @@ xticklabels={Lundi, Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche }
 \end{axis}
 \end{tikzpicture}
 \caption{Occupation du système au cours d'une semaine type}
-\label{blocking_proba_plot}
+\label{semaine_type}
 \end{figure}
 
-On y observe de grandes fluctuations de l'occupation au cours de la semaine, principalement à l'échelle de la journée avec des pics chaque jour aux alentours de 13h. De plus un effet du aux week-end est très clairement présent, tout d'abord avec des pics en journée plus haut que le reste de la semaine mais aussi avec des creux plus haut, représentant les usagers qui réservent une voiture afin de partir en week-end avec. Par ailleurs, on remarque que le vendredi fait en quelque sorte la transition entre la semaine et le week-end, avec un pic intermédiaire en milieu de journée et une nuit entre vendredi et samedi plus chargée que les nuits de semaine, ce qui montre que les départs en week-ends commencent ici dès le vendredi soir.
+On y observe ainsi de grandes fluctuations de l'occupation au cours de la semaine, principalement à l'échelle de la journée avec des pics chaque jour aux alentours de 13h avec des périodes de creux durant les nuits.
+Cette unicité du pic est intéressante car c'est un comportement différent des voitures de free-floating, présentant un pic d'utilisation en matinée et en soirée (figure à tracer).
+
+Par ailleurs un effet dû aux weekends est très clairement présent, tout d'abord avec des pics en journée plus haut que le reste de la semaine mais aussi avec des creux plus élevés, représentant les usagers qui réservent une voiture afin de partir en week-end avec. Par ailleurs, on remarque que le vendredi fait en quelque sorte la transition entre la semaine et le week-end, avec un pic intermédiaire en milieu de journée et une nuit entre vendredi et samedi plus chargée que les nuits de semaine, ce qui montre que les départs en weekends peuvent commencer dès le vendredi.
 
 
 
@@ -175,7 +226,6 @@ Afin de pouvoir exploiter la courbe, il est nécessaire de lisser la courbe, par
 
 
 \begin{figure} [h]
-\label{lissage_courbe}
 \centering
 \begin{tikzpicture}[scale=0.5]
 \begin{axis}[
@@ -193,6 +243,7 @@ table[x=x,y=y]{graphs/Temps_de_trajet_lisse.txt};;
 \end{axis}
 \end{tikzpicture}
 \caption{Densité du Temps de trajet lissée}
+\label{lissage_courbe}
 \end{figure}
 
 
@@ -210,7 +261,6 @@ On note $\displaystyle d_{VT}(\mu,\nu) = \int_{\mathbb{R}}|f(x)-g(x)|dx$ la dist
 Après optimisation des différents paramètres pour les différentes lois, j'ai obtenu le tableau~\ref{Distance_à_temps_réservation} présentant la distance minimale entre chaque loi et la distribution du temps de réservation.
 
 \begin{figure}[h]
-\label{Distance_à_temps_réservation}
 \centering
 \begin{tabular}{c|c}
 Loi approximant & Distance\\
@@ -220,6 +270,7 @@ Loi Log-normale & 0.17 \\
 Loi de Weibull & 0.24\\
 \end{tabular}
 \caption{Distance entre différentes lois et la distribution du temps de réservation}
+\label{Distance_à_temps_réservation}
 \end{figure}
 
 Grâce à cela, il s'avère que c'est une loi log-normale de paramètres $\mu = 2.6$ et $\sigma^2=0.9$ qui permet la meilleur approximation du temps de réservation.
@@ -289,7 +340,6 @@ Dans le cadre de cette étude, il est intéressant de regarder la capacité des 
 Pour cela, j'ai regardé sur une semaine le nombre de voitures étant associé à chaque stations afin d'en faire un histogramme. Je me suis limité à une semaine afin de passer outre les voitures qui changent occasionnellement de station au grès des ajustements réalisés par Communauto tout en ayant assez de données pour que quasiment toutes les voitures aient été utilisées sur cet intervalle et ainsi avoir un histogramme assez fiable.
 
 \begin{figure}[!h]
-\label{hist_capa}
 \centering
 \begin{tikzpicture}[scale=0.4]
        \begin{axis}[
@@ -304,6 +354,7 @@ width=\linewidth,height=\linewidth
 \end{axis}
 \end{tikzpicture}
 \caption{Distribution du nombre de voitures par station}
+\label{hist_capa}
 \end{figure}
 
 
@@ -346,9 +397,9 @@ width=\linewidth,height=\linewidth
 
 
 
-Une autre donnée intéressante concerne l'annulation des réservations. En effet, comme la figure~\ref{Répartition} cela correspond à une part importante des données: 24\% des réservations initiales étant annulées. 
+Une autre donnée intéressante concerne l'annulation des réservations. En effet, comme montré par la figure~\ref{Répartition} cela correspond à une grande part des données: 24\% des réservations initiales étant annulées. 
 
-Il est alors intéressant de regarder quand cette annulation à lieu dans le cycle de vie de la réservation. Pour cela, on peut s'intéresser à la loi du temps entre l'annulation de la réservation et son début théorique. Une loi empirique de ceci est tracé figure~\ref{délai_annulation_début} 
+Il est alors intéressant de regarder quand cette annulation a lieu dans le cycle de vie de la réservation. Pour cela, on peut s'intéresser à la loi du temps entre l'annulation de la réservation et son début théorique. La loi empirique de ceci est tracée figure~\ref{délai_annulation_début} 
 
 \begin{figure}[!h]
 \centering
@@ -370,7 +421,7 @@ table[x=x,y=y]{graphs/Temps_annulation.txt};;
 \end{figure}
 
 
-La première chose que l'on remarque est la présence d'un petit nombre de réservations annulées après leur temps de début de réservation, correspondant à environ 0.5\% des trajets annulés. Ceci n'est pas une erreur des données, la réservation étant payée par les usagers pour le temps 
+La première chose que l'on remarque est la présence d'un petit nombre de réservations annulées après leur temps de début de réservation, correspondant à environ 0.5\% des trajets annulés. Ceci n'est pas une erreur des données, la réservation étant payée par les usagers pour le temps écoulée.
 
 Ensuite la majorité des annulations ont lieu juste avant le début du trajet, comme montré par le pic observées sure les données en 0. Ainsi, les réservations annulées le sont en moyenne moins de 3 jours avant le début de la réservation: 62\% étant annulées moins de 24h à l'avance.
 
@@ -398,7 +449,7 @@ table[x=x,y=y]{graphs/Temps_annulation.txt};;
 
 \subsection{Étude du temps de pré-réservation}
 
-Les données disposent d'un champ \emph{date d'inscription} correspondant en théorie à la date à laquelle l'usager à réservé un créneau. Cependant, cette date ne correspond généralement pas à la date d'inscription réelle mais à la date de dernière action sur la réservation, que ce soit son annulation, sa modification ou bien un retour anticipé de la voiture. Ainsi les données ne sont pas forcément fiables et sont donc difficiles à exploiter.
+Les données disposent d'un champ \emph{date d'inscription} correspondant en théorie à la date à laquelle une réservation à été inscrite dans le système, c'est à dire la date à laquelle l'usager à réservé un créneau. Cependant, cette date ne correspond généralement pas à la date d'inscription réelle mais à la date de dernière action sur la réservation, que ce soit son annulation, sa modification ou bien un retour anticipé de la voiture. Ainsi les données présentant leur  date d'inscription initiale sont très partielles et difficiles à identifier.
 
 
 \section{Simulations numériques}
