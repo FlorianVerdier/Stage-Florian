@@ -39,9 +39,9 @@ Ces deux systèmes partagent un même abonnement ainsi qu'un tarif identique apr
 
 \subsection{Fonctionnement du système et lexique utilisé}
 
-Le moment où un usager réserve une voiture est appelé \emph{temps d'inscription}.
+Les utilisateurs ont accès à une application sur lesquelles ils peuvent réserver une voiture. Le moment où un usager réserve une voiture est appelé \emph{temps d'inscription}.
 
-Pour les deux systèmes, on peut séparer le temps entre l'arrivée d'un usager et son départ en deux: Le temps s'écoulant entre l'inscription d'une réservation et le début de la réservation est appelé \emph{temps de pré-réservation}, le \emph{temps de réservation} (et non temps de trajet) correspond lui à la durée de réservation elle-même.
+Pour les deux systèmes, on peut séparer le temps entre l'inscription d'une réservation et sa fin en deux: Le temps s'écoulant entre l'inscription et le début de la réservation est appelé \emph{temps de pré-réservation}, le \emph{temps de réservation} (et non temps de trajet) correspond lui à la durée de réservation elle-même.
 
 \begin{figure}[h]
 \centering
@@ -66,7 +66,7 @@ Le temps de pré-réservation est ainsi inférieur à 30 minutes.
 
 \subsection{Système basé-stations}
 
-Dans ce système, les usagers se connectant à un certain instant peuvent sélectionner une voiture et réserver un créneau futur s'il est disponible. La réservation peut s'effectuer jusqu'à un mois à l'avance.
+Dans ce système, les usagers se connectant à un certain instant peuvent sélectionner une voiture assignée à une station et réserver un créneau futur s'il est disponible. La réservation peut s'effectuer jusqu'à un mois à l'avance.
 
 Il est également possible pour un usager d'annuler une réservation effectuée ou encore de rendre la voiture avant la fin annoncée de la réservation. Dans ce dernier cas, on parlera de \emph{fin de réservation anticipée} par opposition aux \emph{réservations menées à leur termes}.
 
@@ -82,6 +82,9 @@ Le temps de pré-réservation peut ainsi monter à 1 mois tandis que la durée d
 
 Grâce à un partenariat entre Communauto et Polytechnique Montréal, j'ai eu accès aux données correspondant aux réservations de voitures effectuées dans la ville de Montréal. 
 J'ai ainsi pu étudier les données de l'année 2021, comprenant  aussi bien les réservations effectuées sur les voitures en free-floating que sur celles en basés-stations, cela correspondant à respectivement à 69\% et 31\% des réservations effectués.
+
+
+Le système est basé sur plus de 2000 voitures, dont environ 40\% sont en free-floating tandis que 60\% sont des voitures basées-station réparties en près de 500 stations réparties dans la ville.
 
 Je disposais pour ces données d'un grand nombre de champs dont ceux que j'ai principalement utilisés sont les suivant:
 \begin{itemize}
@@ -161,7 +164,7 @@ grid=major,
 
 Ce graphe permet d'identifier les périodes les plus importantes, qui sont par ordre décroissant les vacances d'été et de noël, où le minimum de réservation à un instant donné est particulièrement élevé, les autres vacances et weekends prolongés puis les week-ends.
 
-Ce graphe ne prend pas en compte les réservations ayant commencé avant 2021, ce qui explique le faible nombre de réservations début 2021 par rapport à 2021: il y a en réalité un grand nombre de longues réservations n'apparaissant par sur ces données.
+Ce graphe ne prend pas en compte les réservations ayant commencé avant 2021, ce qui explique le faible nombre de réservations début 2021 par rapport à 2021: il y a en réalité un grand nombre de longues réservations commençant fin 2020 qui n'apparaissent par sur ces données.
 
 
 La figure~\ref{semaine_type} présente la capacité utilisée typique durant une semaine, obtenue en moyennant chaque jour de la semaine sur les 53 semaines de l'année 2021 et qui permet de voir plus finement ce qui se passe au cours d'une semaine.
@@ -192,22 +195,22 @@ xticklabels={Lundi, Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche }
 \label{semaine_type}
 \end{figure}
 
-On y observe ainsi de grandes fluctuations de l'occupation au cours de la semaine, principalement à l'échelle de la journée avec des pics chaque jour aux alentours de 13h avec des périodes de creux durant les nuits.
-Cette unicité du pic est intéressante car c'est un comportement différent des voitures de free-floating, présentant un pic d'utilisation en matinée et en soirée (figure à tracer).
+On y observe ainsi de grandes fluctuations de l'occupation au cours de la semaine, principalement à l'échelle de la journée avec des pics chaque jour aux alentours de 13h et des périodes de creux durant les nuits.
+Cette unicité du pic est intéressante car c'est un comportement différent des voitures de free-floating, présentant un pic d'utilisation en matinée et en soirée (figure à tracer), 
 
-Par ailleurs un effet dû aux weekends est très clairement présent, tout d'abord avec des pics en journée plus haut que le reste de la semaine mais aussi avec des creux plus élevés, représentant les usagers qui réservent une voiture afin de partir en week-end avec. Par ailleurs, on remarque que le vendredi fait en quelque sorte la transition entre la semaine et le week-end, avec un pic intermédiaire en milieu de journée et une nuit entre vendredi et samedi plus chargée que les nuits de semaine, ce qui montre que les départs en weekends peuvent commencer dès le vendredi.
-
-
+Par ailleurs un effet dû aux weekends est très clairement présent, tout d'abord avec des pics en journée plus hauts que durant le reste de la semaine mais aussi avec des creux plus élevés, représentant les usagers qui réservent une voiture afin de partir en week-end avec. Par ailleurs, on remarque que le vendredi fait en quelque sorte la transition entre la semaine et le week-end, avec un pic intermédiaire en milieu de journée et un creux de nuit entre vendredi et samedi plus chargée que les nuits de semaine, ce qui montre que les départs en weekends peuvent commencer dès le vendredi.
 
 
 
 
-\subsection{Étude du temps de trajet des usagers}
+
+
+\subsection{Étude du temps de réservation des usagers}
 
 
 \subsubsection{Premières analyses}
 
-On mesure un temps de trajet moyen de 7.8h alors que le maximum de la distribution est situé à 2h et le temps médian est lui de 3.5. La moyenne du temps de réservation est en effet bien augmentée par la présence de très long trajets, certains faisant plus de 3 semaines.
+On mesure un temps de réservation moyen de 7.8h alors que le maximum de la distribution est situé à 2h et le temps médian est lui de 3.5. La moyenne du temps de réservation est en effet bien augmentée par la présence de très longues réservations, certains faisant plus de 3 semaines.
 
 De plus le kurtosis de cette distribution vaut 160, ce qui indique que l'on a affaire à une distribution à queue lourde, c'est à dire qu'elle possède une queue plus épaisse qu'une loi normale et donc que les événements extrêmes y sont plus probables.
 
@@ -216,11 +219,11 @@ De plus le kurtosis de cette distribution vaut 160, ce qui indique que l'on a af
 \subsubsection{Détermination et lissage de la distribution}
 
 Afin de déterminer des informations plus fines, il faut étudier l'allure de la distribution:
-Pour cela, dans le cadre du temps de trajet des usagers, le champ \emph{res\_trip\_length\_hr} présent dans les données correspond précisément au temps de réservation de chaque élément.
+Pour cela, dans le cadre du temps de réservation des usagers, le champ \emph{res\_trip\_length\_hr} présent dans les données correspond précisément au temps de réservation de chaque élément.
 
-Il ne comprend supposément que des temps définies au quart d'heure près, les réservations pour les voitures basés-station se faisant sur des créneaux de la taille d'un quart d'heure. Cependant, on retrouve parmi les données certaines valeurs aberrantes, telles des réservations durant 1 ou 40 minutes par exemple.  Cela correspondant à seulement 13 réservations, j'ai décidé de les enlever de l'étude du temps de trajet.
+Il ne comprend supposément que des temps définies au quart d'heure près, les réservations pour les voitures basés-station se faisant sur des créneaux de la taille d'un quart d'heure. Cependant, on retrouve parmi les données certaines valeurs aberrantes, telles des réservations durant 1 ou 40 minutes par exemple.  Cela correspondant à seulement 13 réservations, j'ai décidé de les enlever de l'étude du temps de réservation.
 
-On peut alors obtenir la répartition empirique des temps de trajet (courbe bleue sur la figure~\ref{lissage_courbe}) qui reste néanmoins très irrégulière; on peut en effet observer une certaine périodicité d'ordre 4, certainement due aux utilisateurs, qui auront une plus grande tendance à réserver un trajet d'une durée entière en heures. Pour la même raison, on observe un pic de trajets d'une durée de 10 heures ainsi que des pics successifs présents pour tout les jours entiers.
+On peut alors obtenir la répartition empirique des temps de réservation (courbe bleue sur la figure~\ref{lissage_courbe}) qui reste néanmoins très irrégulière; on peut en effet observer une certaine périodicité d'ordre 4, certainement due aux utilisateurs, qui auront une plus grande tendance à réserver une durée entière en heures. Pour la même raison, on observe un pic de réservations d'une durée de 10 heures ainsi que des pics successifs présents pour tout les jours entiers.
 
 Afin de pouvoir exploiter la courbe, il est nécessaire de lisser la courbe, par exemple avec un estimateur à noyau de fenêtre assez large pour enlever ces périodicités. J'ai préféré un estimateur à taille de noyau variable afin de ne pas trop écraser les données présentes à l'origine et ainsi de garder l'allure générale de la courbe, ce qui est réalisé sur la courbe rouge en figure~\ref{lissage_courbe}.
 
@@ -232,7 +235,7 @@ Afin de pouvoir exploiter la courbe, il est nécessaire de lisser la courbe, par
 xmin=0, ymin=0, xmax=25, ymax=0.07,
 ylabel={Densité},
 ylabel style={xshift=+9pt},
-xlabel={Temps de Trajet (en heure)},
+xlabel={Temps de Réservation (en heure)},
 xlabel style={xshift=+9pt},
 width=\linewidth,height=\linewidth
 ]
@@ -242,7 +245,7 @@ table[x=x,y=y]{graphs/Temps_de_trajet_moins_VA.txt};;
 table[x=x,y=y]{graphs/Temps_de_trajet_lisse.txt};;
 \end{axis}
 \end{tikzpicture}
-\caption{Densité du Temps de trajet lissée}
+\caption{Densité du Temps de réservation lissée}
 \label{lissage_courbe}
 \end{figure}
 
@@ -251,7 +254,7 @@ table[x=x,y=y]{graphs/Temps_de_trajet_lisse.txt};;
 
 A partir de cette courbe lissée, j'ai cherché à déterminer par quelle loi l'approcher pour correspondre le mieux aux données et ainsi adapter le mieux le modèle. Pour cela, je me suis concentré sur des lois à queues lourdes, à savoir notamment loi gamma, loi log-normale, loi de Weibull ou encore loi de Burr.
 
-Je les aies comparées à la distribution empirique du temps de trajet en utilisant la distance en variation totale:
+Je les aies comparées à la distribution empirique du temps de réservation en utilisant la distance en variation totale:
 
 \begin{definition}{Distance en variation totale}\\
 Soient $\mu,\nu$ deux mesures de probabilité de densités respectives $f$ et $g$.\\
@@ -335,9 +338,14 @@ table[x=x,y=log_normal]{graphs/Temps_de_trajet_ajustement_lois.txt};
 \caption{Ajustement du temps de réservation par loi log-normale}
 \end{figure}
 
-\subsection{Capacité des stations}
-Dans le cadre de cette étude, il est intéressant de regarder la capacité des stations dans lesquelles sont stationnées les voitures basées-stations.
-Pour cela, j'ai regardé sur une semaine le nombre de voitures étant associé à chaque stations afin d'en faire un histogramme. Je me suis limité à une semaine afin de passer outre les voitures qui changent occasionnellement de station au grès des ajustements réalisés par Communauto tout en ayant assez de données pour que quasiment toutes les voitures aient été utilisées sur cet intervalle et ainsi avoir un histogramme assez fiable.
+\subsection{Étude des stations}
+Dans le cadre de cette étude, il est intéressant de regarder la capacité des stations dans lesquelles sont stationnées les voitures basées-stations ainsi que leur répartition dans la ville.
+
+Pour cela, j'ai regardé les voitures en activité et leur station lorsque le maximum de voitures étaient utilisées, à savoir le 24 juillet à 15h30, avec un pics à plus de 1300 voitures réservées en même temps. J'ai procédé ainsi afin de ne pas avoir des doublons dans les données, dues aux éventuelles voitures changeant de stations au gré des ajustements réalisées par Communauto.
+
+Les graphes suivants se basent donc sur l'hypothèse que toutes les voitures étaient réservées à ce moment là, ce qui est assez proche de la réalité car trouver une voiture le week-end, et à fortiori durant la période estivale, est très difficile.
+Les graphes permettent d'avoir un aperçu du système au maximum de sa capacité.
+
 
 \begin{figure}[!h]
 \centering
@@ -358,7 +366,8 @@ width=\linewidth,height=\linewidth
 \end{figure}
 
 
-En traçant l'histogramme (figure~ \ref{hist_capa}), on observe une majorité de très petites stations: 66\% des stations ayant 1 ou 2 voitures seulement. C'est explicable par la politique de Communauto d'avoir des station au plus près des usagers, multipliant ainsi la quantité de stations déployées, ainsi que par la difficulté d'obtenir de grandes zones afin d'y réaliser des stations, favorisant des petites stations avec quelques grandes stations pour quelques points d'intérêts.
+En traçant l'histogramme de la capacité(figure~ \ref{hist_capa}), on observe une majorité de très petites stations: 66\% des stations ayant 1 ou 2 voitures seulement. C'est explicable par la politique de Communauto d'avoir des station au plus près des usagers, multipliant ainsi la quantité de stations déployées, ainsi que par la difficulté d'obtenir des zones afin d'y réaliser de grandes stations.
+Il y a cependant quelques grandes stations, 5\% des stations ayant plus de 10\ voitures et elles représentent ainsi plus du quart des voitures basées-stations en circulation.
 
 \subsection{Étude de la distance de trajet}
 
@@ -393,13 +402,13 @@ width=\linewidth,height=\linewidth
 
 \subsection{Corrélation entre le temps de réservation et la distance parcourue pour obtenir une voiture}
 
-\subsection{Étude du temps éventuel d'annulation}
+\subsection{Étude du temps d'annulation}
 
 
 
 Une autre donnée intéressante concerne l'annulation des réservations. En effet, comme montré par la figure~\ref{Répartition} cela correspond à une grande part des données: 24\% des réservations initiales étant annulées. 
 
-Il est alors intéressant de regarder quand cette annulation a lieu dans le cycle de vie de la réservation. Pour cela, on peut s'intéresser à la loi du temps entre l'annulation de la réservation et son début théorique. La loi empirique de ceci est tracée figure~\ref{délai_annulation_début} 
+Il est alors intéressant de regarder quand cette annulation a lieu dans le cycle de vie de la réservation. Pour cela, on peut s'intéresser à la loi du temps s'écoulant entre l'annulation de la réservation et son début théorique. La loi empirique est tracée figure~\ref{délai_annulation_début} 
 
 \begin{figure}[!h]
 \centering
