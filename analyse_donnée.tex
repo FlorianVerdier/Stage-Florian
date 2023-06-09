@@ -7,10 +7,11 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{pgf-pie}  
+\usepackage{bbm}
 
 \usepackage{tikz}
 \usetikzlibrary{babel}
-
+\usetikzlibrary{patterns}
 \usetikzlibrary{decorations.markings}
 \usepackage{pgfplots}
 \usetikzlibrary{arrows,calc}
@@ -19,6 +20,10 @@
 
 \author{Florian VERDIER}
 
+
+\newcommand{\E}[1]{\mathbb{E}\left[ #1 \right]}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\1}[1]{\mathbbm{1}_{\{#1\}} }
 
 \newtheorem{theorem}{Theorem}
 \theoremstyle{definition}
@@ -125,8 +130,8 @@ On retrouve dans les données principalement des réservations {actives (menées
 \subsection{Nettoyage préalable des  données}
 Pour étudier les données et tenter de déterminer les lois de probabilités par lesquelles on peut approximer les différentes distribution, il faut commencer par nettoyer et filtrer les données:
 
-Dans un premier temps, il s'agit ainsi d'isoler les réservations réelles, c'est à dire les réservations effectuées par les usagers, et d'éliminer les autres, par exemple les réservations pour maintenance ou pour changer la voiture de station de rattachement.
-Ce filtrage se fait très simplement en considérant uniquement les réservation dites actives dans les données.	
+Dans un premier temps, il s'agit ainsi d'isoler les réservations réelles, c'est à dire les réservations effectuées par les usagers e, et d'éliminer les autres, par exemple les réservations pour maintenance ou pour changer la voiture de station de rattachement, ainsi que des restes de réservations annulées, qu'en peut identifier par une distance parcourue nulle et un tarif appliqué nul  .
+	
 
 Suivant le paramètre étudié, j'ai pu avoir à filtrer selon le statut de la réservation, afin d'éliminer les trajets annulés pour mesurer le temps de réservation effectif par exemple.
 
@@ -177,10 +182,10 @@ La figure~\ref{semaine_type} présente la capacité utilisée typique durant une
 date coordinates in=x,
 date ZERO= 2021-01-04,
 xticklabel = {\day.\month},
-xmin={2021-01-04}, ymin=0, xmax={2021-01-11}, ymax=1200,
-ylabel={Nombre de voiture occupées},
+xmin={2021-01-04}, ymin=0, xmax={2021-01-11}, ymax=1,
+ylabel={Nombre de voiture occupées (normalisé)},
 ylabel style={xshift=+9pt},
-xlabel={Jours},
+%xlabel={},
 xlabel style={xshift=+9pt},
 x tick label style={xshift=2.2em},
 width=\linewidth,height=\linewidth,
@@ -210,7 +215,7 @@ Par ailleurs un effet dû aux weekends est très clairement présent, tout d'abo
 
 \subsubsection{Premières analyses}
 
-On mesure un temps de réservation moyen de 7.8h alors que le maximum de la distribution est situé à 2h et le temps médian est lui de 3.5. La moyenne du temps de réservation est en effet bien augmentée par la présence de très longues réservations, certains faisant plus de 3 semaines.
+On mesure un temps de réservation moyen de 7.8h alors que le maximum de la distribution est situé à 2h et le temps médian est lui de 3.5. La moyenne du temps de réservation est en effet fortement augmentée par la présence de très longues réservations, 1\% des réservations durant notamment plus de 2 semaines, soit plus de 300h.
 
 De plus le kurtosis de cette distribution vaut 160, ce qui indique que l'on a affaire à une distribution à queue lourde, c'est à dire qu'elle possède une queue plus épaisse qu'une loi normale et donc que les événements extrêmes y sont plus probables.
 
@@ -250,7 +255,7 @@ table[x=x,y=y]{graphs/Temps_de_trajet_lisse.txt};;
 \end{figure}
 
 
-\subsubsection{Détermination de la loi la mieux adapté aux données}
+\subsubsection{Détermination de la loi la mieux adaptée aux données}
 
 A partir de cette courbe lissée, j'ai cherché à déterminer par quelle loi l'approcher pour correspondre le mieux aux données et ainsi adapter le mieux le modèle. Pour cela, je me suis concentré sur des lois à queues lourdes, à savoir notamment loi gamma, loi log-normale, loi de Weibull ou encore loi de Burr.
 
@@ -266,19 +271,19 @@ Après optimisation des différents paramètres pour les différentes lois, j'ai
 \begin{figure}[h]
 \centering
 \begin{tabular}{c|c}
-Loi approximant & Distance\\
+Loi approximante & Distance\\
 \hline
-Loi gamma &  0.23\\
-Loi Log-normale & 0.17 \\
-Loi de Weibull & 0.24\\
+Loi gamma $\Gamma(0.63,70.82)$&  0.23\\
+Loi Log-normale $\log-\mathcal{N}(2.62,0.9)$ & 0.17 \\
+Loi de Weibull$(k =1.13  ,\lambda = 16,7)$ & 0.24\\
 \end{tabular}
 \caption{Distance entre différentes lois et la distribution du temps de réservation}
 \label{Distance_à_temps_réservation}
 \end{figure}
 
-Grâce à cela, il s'avère que c'est une loi log-normale de paramètres $\mu = 2.6$ et $\sigma^2=0.9$ qui permet la meilleur approximation du temps de réservation.
+Grâce à cela, il s'avère que c'est une loi log-normale de paramètres $\mu = 2.6$ et $\sigma^2=0.9$ qui permet la meilleure approximation du temps de réservation.
 
-Le choix d'une loi log-normale est confirmé par l'étude des graphes quantile-quantile des différentes distributions théoriques présents figure~\ref{Qplot} seule la loi log-normale sélectionnée permet une bonne approximation de la queue de distribution.
+Le choix d'une loi log-normale est confirmé par l'étude des graphes quantile-quantile des différentes distributions théoriques présents en figure~\ref{Qplot} seule la loi log-normale sélectionnée permet une bonne approximation de la queue de distribution.
 
 
 
@@ -339,6 +344,8 @@ table[x=x,y=log_normal]{graphs/Temps_de_trajet_ajustement_lois.txt};
 \end{figure}
 
 \subsection{Étude des stations}
+
+\subsubsection{Capacité des stations}
 Dans le cadre de cette étude, il est intéressant de regarder la capacité des stations dans lesquelles sont stationnées les voitures basées-stations ainsi que leur répartition dans la ville.
 
 Pour cela, j'ai regardé les voitures en activité et leur station lorsque le maximum de voitures étaient utilisées, à savoir le 24 juillet à 15h30, avec un pics à plus de 1300 voitures réservées en même temps. J'ai procédé ainsi afin de ne pas avoir des doublons dans les données, dues aux éventuelles voitures changeant de stations au gré des ajustements réalisées par Communauto.
@@ -366,23 +373,25 @@ width=\linewidth,height=\linewidth
 \end{figure}
 
 
-En traçant l'histogramme de la capacité(figure~ \ref{hist_capa}), on observe une majorité de très petites stations: 66\% des stations ayant 1 ou 2 voitures seulement. C'est explicable par la politique de Communauto d'avoir des station au plus près des usagers, multipliant ainsi la quantité de stations déployées, ainsi que par la difficulté d'obtenir des zones afin d'y réaliser de grandes stations.
-Il y a cependant quelques grandes stations, 5\% des stations ayant plus de 10\ voitures et elles représentent ainsi plus du quart des voitures basées-stations en circulation.
+En traçant l'histogramme de la capacité(Figure~ \ref{hist_capa}), on observe une majorité de très petites stations: 66\% des stations ayant 1 ou 2 voitures seulement. C'est explicable par la politique de Communauto d'avoir des station au plus près des usagers, multipliant ainsi la quantité de stations déployées, ainsi que par la difficulté d'obtenir des zones afin d'y réaliser de grandes stations.
+Il y a cependant quelques grandes stations, 5\% des stations ayant plus de 10 voitures et elles représentent ainsi plus du quart des voitures basées-stations en circulation.
+
+\subsubsection{Localisation des stations}
+
+La figure(à ajouter) présent toutes les stations de communauto présentes à Montréal.
 
 \subsection{Étude de la distance de trajet}
 
 
-Afin d'étudier la loi de la distance parcourue, il faut dans un premier temps retirer des données les réservations ayant une distance parcourue nulle, correspondant la majorité du temps à des réservations "à vide", sans bouger la voiture. (Cela pourrait également correspondre à de très petits trajets, la distance relevée étant arrondie au kilomètre prés, mais cela ne concerne qu'un faible nombre de trajets).
+Afin d'étudier la loi de la distance parcourue, il faut dans un premier temps retirer des données les réservations ayant une distance parcourue nulle, correspondant la majorité du temps à des réservations "à vide", sans bouger la voiture. (Cela pourrait également correspondre à de très petits trajets, la distance relevée étant arrondie au kilomètre prés, mais cela ne concerne qu'un faible nombre de trajets). Ces réservations correspondent à 10\% du total des réservations
 
-L'étude de la distance est après cela tout à fait similaire à celle de du temps de trajet, les distributions lissées étant similaires.
-
-Dans ce cas, la distribution qui l'approche le mieux est encore une fois une loi log-normale, dont les paramètres sont  $\mu = $, $\sigma^2$ = . La figure ~\ref{Ajustement_distance} présente la loi expérimentale et la loi approchée en superposition.
+L'étude de la distance est après cela tout à fait similaire à celle de du temps de trajet et la distribution qui l'approche le mieux est pareillement une loi log-normale, dont les paramètres sont cette fois $\mu = 3.08 $, $\sigma^2$ = 1.25. La Figure~\ref{Ajustement_distance} présente la loi expérimentale et la loi approchée en superposition.
 
 \begin{figure}[!h]
 \centering
 \begin{tikzpicture}[scale=0.5]
 \begin{axis}[
-xmin=0, ymin=0, xmax=10, ymax=0.07,
+xmin=0, ymin=0, xmax=100, ymax=0.04,
 ylabel={Densité},
 ylabel style={xshift=+9pt},
 xlabel={Distance parcourure (en km)},
@@ -390,18 +399,19 @@ xlabel style={xshift=+9pt},
 width=\linewidth,height=\linewidth
 ]
 
-%\addplot[blue, smooth]table[x=x,y=y]{graphs/Temps_de_trajet_lisse.txt};
-%\addlegendentry{Données réelles lissées};
-%\addplot[red, smooth]table[x=x,y=log_normal]{graphs/Temps_de_trajet_ajustement_lois.txt};
-%\addlegendentry{Loi log-normale};
+\addplot[blue, smooth]table[x=x,y=y]{graphs/Distance_de_trajet_lisse.txt};
+\addlegendentry{Données réelles lissées};
+\addplot[red, smooth]table[x=x,y=log_normal]{graphs/Distance_de_trajet_ajustement_log_normal.txt};
+\addlegendentry{Loi log-normale};
 \end{axis}
 \end{tikzpicture}
-\caption{Ajustement de la distance parcourue par loi log-normale}
+\caption{Ajustement de la distance parcourue par une loi log-normale}
 \label{Ajustement_distance}
 \end{figure}
 
 \subsection{Corrélation entre le temps de réservation et la distance parcourue pour obtenir une voiture}
 
+Il est que les usagers sont souvent près à traverser la ville afin d'obtenir une voiture. J'ai donc voulu vérifier cela en traçant la distribution de la distance entre la station utilisée et le domicile des usagers pour différents taux d'occupation du système.
 \subsection{Étude du temps d'annulation}
 
 
@@ -414,10 +424,10 @@ Il est alors intéressant de regarder quand cette annulation a lieu dans le cycl
 \centering
 \begin{tikzpicture}[scale=0.5]
 \begin{axis}[
-xmin=-1, ymin=0, xmax=10, ymax=40000,
-ylabel={Nombre de réservations},
+xmin=-1, ymin=0, xmax=10, ymax=0.2,
+ylabel={Densité},
 ylabel style={xshift=+9pt},
-xlabel={Temps (en heure)},
+xlabel={Temps (en jours)},
 xlabel style={xshift=+9pt},
 width=\linewidth,height=\linewidth
 ]
@@ -425,7 +435,7 @@ width=\linewidth,height=\linewidth
 table[x=x,y=y]{graphs/Temps_annulation.txt};;
 \end{axis}
 \end{tikzpicture}
-\caption{Loi du temps entre annulation et début de la réservation}
+\caption{Densité du temps entre annulation et début de la réservation}
 \label{délai_annulation_début}
 \end{figure}
 
@@ -434,35 +444,273 @@ La première chose que l'on remarque est la présence d'un petit nombre de rése
 
 Ensuite la majorité des annulations ont lieu juste avant le début du trajet, comme montré par le pic observées sure les données en 0. Ainsi, les réservations annulées le sont en moyenne moins de 3 jours avant le début de la réservation: 62\% étant annulées moins de 24h à l'avance.
 
-On observe cependant pour la suite une tendance géométrique qui apparaît bien sur la courbe lissée, encore une fois à l'aide d'un estimateur à noyau.
+Enfin, en regardant au temps long sur la figure~\ref{délai_annulation_jours}, un léger pic apparaît à 31 jours, représentant les clients annulant leur réservations juste après l'avoir réservée.
 
 
 \begin{figure}[!h]
 \centering
-\begin{tikzpicture}[scale=0.5]
-\begin{axis}[
-xmin=0.5, ymin=0, xmax=10, ymax=4000,
+\begin{tikzpicture}[scale=0.4]
+\begin{semilogyaxis}[
+xmin=0.5, ymin=0, xmax=31, ymax=0.6,
 ylabel={Nombre de réservations},
 ylabel style={xshift=+9pt},
-xlabel={Temps (en heure)},
+xlabel={Temps (en jours)},
 xlabel style={xshift=+9pt},
 width=\linewidth,height=\linewidth
 ]
 \addplot[blue, thick, smooth]
-table[x=x,y=y]{graphs/Temps_annulation.txt};;
-\end{axis}
+table[x=x,y=y]{graphs/Temps_annulation_j.txt};;
+\end{semilogyaxis}
 \end{tikzpicture}
-\caption{Loi du temps entre annulation et début de la réservation}
-\label{délai_annulation_débutzz}
+\caption{Densité du temps entre annulation et début de la réservation}
+\label{délai_annulation_jours}
 \end{figure}
 
 \subsection{Étude du temps de pré-réservation}
 
 Les données disposent d'un champ \emph{date d'inscription} correspondant en théorie à la date à laquelle une réservation à été inscrite dans le système, c'est à dire la date à laquelle l'usager à réservé un créneau. Cependant, cette date ne correspond généralement pas à la date d'inscription réelle mais à la date de dernière action sur la réservation, que ce soit son annulation, sa modification ou bien un retour anticipé de la voiture. Ainsi les données présentant leur  date d'inscription initiale sont très partielles et difficiles à identifier.
 
-
 \section{Simulations numériques}
 
+Afin de modéliser l'évolution 
+
+
+Dans le cadre du modèle utilisé, on nécessite 5 lois afin de simuler le système:
+\begin{itemize}
+\item la loi du temps d'arrivée des usagers.
+\item la loi du temps de pré-réservation
+\item la loi du temps de réservation
+\item la loi du temps d'annulation de la réservation (le temps entre l'inscription et l'annulation de la réservation)
+\item la loi du temps de de retour anticipé du véhicule
+\end{itemize}
+
+Le point crucial consiste à déterminer sous quelles conditions une réservation demandée par un usager est acceptée ou non.  Le critère simple est qu'une réservation est acceptée si, sur l'intervalle voulu par l'usager, la capacité résiduelle due aux réservations précédente est toujours strictement positive.
+
+En effet, étant donné qu'on considère un système où le client ne réserve pas une voiture spécifique mais une voiture d'une station, la condition assure qu'au moins une voiture ne sera pas encore utilisée au moment du début de la réservation de chaque client, voiture qui pourra ainsi être prise par le client.
+
+
+\subsection{Le modèle du "Tetris"}
+
+Afin de visualiser cette condition d'acceptabilité des réservations, on peut représenter les réservations successives comme des pièces d'une certaine longueur proportionnelle à la longueur du créneau réservé. On peut alors représenter les réservations successives comme différentes pièces tombant dans une grille de tetris infinie, l'axe des abscisses représentant l'axe temporel.
+Chaque réservation descend alors sur l'intervalle que  le client souhaite réserver et la réservation est acceptée uniquement si ce bloc peut se retrouver en totalité en dessous de la capacité du système.
+
+Cela est schématisé par la figure~\ref{Tetris}, présentant une capacité maximale de 4.  
+
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+
+\draw (0,0) -- (0,6);
+\draw[->] (-1,0) -- (11,0) node[very near end,below]{\tiny{Temps}} ;
+\draw (10,0) -- (10,6);
+\draw[dashed] (0,4) -- (10,4)  node[pos = -0.02, above left] {\tiny{Capacité}}node[pos = 0, below left] {\tiny{du système}};
+
+\draw[pattern=vertical lines, pattern color=gray] (1,0) rectangle (5,1);
+\draw[pattern=horizontal lines, pattern color=gray] (6,0) rectangle (10,1);
+\draw[pattern = crosshatch dots gray
+] (0,0) rectangle (1,1);
+\draw[pattern = crosshatch dots gray
+] (1,1) rectangle (4,2);
+\draw[pattern = north west lines 
+] (2,2) rectangle (4,3);
+\draw[pattern = north west lines 
+] (4,1) rectangle (5,2);
+\draw[pattern = north west lines 
+] (5,0) rectangle (6,1);
+\draw[pattern = north west lines 
+] (6,1) rectangle (10,2);
+\draw[pattern = north east lines, pattern color=blue
+] (2,3) rectangle (4,4);
+\draw[pattern = north east lines, pattern color=blue 
+] (4,2) rectangle (5,3);
+
+\fill[red!60] (0,4.5) rectangle (3,5.5);
+\draw (0,4.5) rectangle (3,5.5);
+\node at (1.5,5.2) {\scriptsize{Réservation}};
+\node at (1.5,4.8) {\scriptsize{impossible}};
+\fill[green!60] (5,4.5) rectangle (8,5.5);
+\draw (5,4.5) rectangle (8,5.5);
+\node at (6.5,5.2) {\scriptsize{Réservation}};
+\node at (6.5,4.8) {\scriptsize{possible}};
+
+
+\end{tikzpicture}
+\caption{Schéma représentant la condition d'acceptabilité d'une réservation}
+\label{Tetris}
+\end{figure}
+
+\subsection{Modélisation mathématique}
+
+On considère pour l'instant un modèle simplifié  où les usagers réservent à l'avance un créneau dans le futur et ne peuvent ni l'annuler ni le finir prématurément. Par ailleurs, comme dans les simulations, on considère que les usagers réservent un créneau et pas directement une voiture.
+
+\begin{definition}{Représentation des réservations}
+
+Les tentatives de réservations peuvent être représentée par un processus de poisson marqué sur $\R_+^3$ $(t_n,p_n,\sigma_n)$ avec :
+\begin{itemize}
+\item $t_n$ est le moment de l'inscription de la réservation, suivant un processus de point de Poisson, de paramètre $\lambda$
+\item $p_n$ est la durée de pré-réservation de la réservation. Les $p_n$ sont i.i.d 
+\item $\sigma_n$ est la durée de réservation de la réservation
+\end{itemize}
+
+
+La suite $(p_n,\sigma_n)$ est i.i.d et $(t_n)$ et $(p_n,\sigma_n)$ sont indépendantes. Notons $(p,\sigma)$ un couple de variables aléatoires ayant même loi que les  $(p_n,\sigma_n)$
+
+On ajoute à ce triplet un 4-ème nombre,$\epsilon_n$, qui va correspondre à la validation de la réservation et vaut 1 si cette réservation ne rentre pas en conflit avec les réservations précédentes au moment de l'inscription.
+\end{definition}
+
+\begin{definition}{Capacité réservée}
+
+La capacité réservée à un instant donné correspond au nombre de véhicules réservés à cet instant, en prenant en compte l'ensemble des réservations validées.
+
+Elle vaut
+\begin{equation}
+C(t) = \sum_{n=0}^{\infty} \epsilon_n \mathbbm{1}_{\{t_n+p_n<t<t_n+p_n+\sigma_n\}}
+\end{equation}
+
+\end{definition}
+
+
+
+\begin{definition}{Capacité prévue}
+
+La capacité prévue en $t$ depuis l'instant $t^{*}$ correspond à la prévision de la capacité en $t_1$ à partir des informations disponibles en $t_0$, c'est à dire sans tenir compte des inscriptions ultérieures à $t^*$.
+
+Elle vaut alors
+\begin{equation}
+C(t|t^{*}) = \sum_{n=0}^{\infty} \epsilon_n\,\1{t_n<t^*}\mathbbm{1}_{\{t_n+p_n<t<t_n+p_n+\sigma_n,\}}
+\end{equation}
+
+\end{definition}
+
+
+\begin{theorem}{Acceptation des réservations}
+
+La condition d'acceptabilité de la n-ième réservation se traduit par
+\begin{equation}
+\forall t \in [t_n+p_n,t_n+p_n+\sigma_n]\,\,\,\, C(t|t_n) < C_{\max}
+\end{equation}
+
+L'expression de $\epsilon_n$ est alors:
+\begin{equation}
+\epsilon_n = \1{\underset{t \in [t_n+p_n,t_n+p_n+\sigma_n]}{\sup} C(t|t_n) < C_{\max}}
+\end{equation}
+\end{theorem}
+
+\subsection{Le cas avec capacité infinie}
+
+Dans ce cas, toutes les réservations demandées sont acceptées dans le système, ainsi le $\epsilon_n$ introduit précédemment n'a plus d'utilité.
+
+
+
+
+Le nombre de voitures réservées à l'instant $t$, c'est à dire ayant fini la période de pré-réservation mais pas encore celle de réservation proprement dite vaut alors:
+\begin{equation}
+LCt) = \sum_{n=0}^{\infty} 	\mathbbm{1}_{\{t_n+p_n \leq t < t_n + p_n +\sigma_n\}}
+\end{equation}
+
+En notant $B_t = \{(u,x,y) \in \left(\mathbb{R}^+\right)^3  | u+x<t<u+x+y \} $ et $\mathcal{N}$ le processus de Poisson marqué d'intensité $\mu(du,dx,dy) = \lambda du \nu(dx,dy)$ représentant l'arrivée des usagers, cela donne:
+
+\begin{equation}
+L(t) = \mathcal{N}(\mathbbm{1}_{B_t})
+\end{equation}
+
+
+
+\begin{theorem} {}
+
+
+
+\begin{equation}
+\forall t\,\,\E{L(t)} = \E{\min((t-p)^+,\sigma)}	
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+\E{L(t)} &= \E{\mathcal{N}(\mathbbm{1}_{B_t})}\\
+&= \mu(\mathbbm{1}_{B_t})\\
+&= \int_{(\R^+)^3} \mathbbm{1}_{B_t}(u,x,y) \mu(du,dx,dy)\\
+&= \lambda \int_{(\R^+)^2} \int_{\R^+} \1{ u+x<t<u+x+y} du \nu(dx,dy)\\
+&= \lambda \int_{(\R^+)^2} \int_{\R^+} \1{ u<t-x<u+y} du \nu(dx,dy)\\
+&= \lambda \int_{(\R^+)^2} \int_{(t-x-y)^+}^{(t-x)^+} du \nu(dx,dy)\\
+&= \lambda \int_{(\R^+)^2} \left((t-x)^+-(t-x-y)^+\right)  \nu(dx,dy)\\
+&= \lambda \int_{(\R^+)^2} \min((t-x)^+,y)  \nu(dx,dy)\\
+&= \E{\min((t-p)^+,\sigma)}	
+\end{align*}
+\end{proof}
+
+\subsubsection{Limite fluide}
+Considérons désormais un processus similaire, où le taux d'arrivé des clients $\lambda$ est remplacé par $\lambda N$. On note alors le processus $C_N(t)$, le processus d'arrivée des usagers $\mathcal{N}_N$ et on définit le processus normalisé par 
+$$ \bar{C}_N(t) = \frac{C_N(t)}{N}$$
+
+
+\begin{definition}{Limite fluide}
+
+On appelle limite fluide de $(C(t)) $ la limite de $\bar{C}_N(t)$ pour N tendant vers l'infini.
+\end{definition}
+
+\begin{theorem}{Limite du processus normalisé}
+
+Le processus renormalisé tend en loi vers $\lambda\E{\min((t-p)^+,\sigma)}$, 
+
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+C_N(t) &=  \mathcal{N}_N(B_t)\\
+&= \int_{(\R^+)^3} \1{B_t}(u,x,y) \mathcal{N}_N(du,dx,dy)\\
+&= \int_{(\R^+)^3} \1{B_t}(u,x,y) \left(\mathcal{N}_N(du,dx,dy)-\lambda N du \nu(dx,dy)\right)\\ &\,\,\,+ \int_{(\R^+)^3} \1{B_t}(u,x,y) \lambda N du \nu(dx,dy)\\
+\end{align*}
+
+
+Notons $M_N(t) = \int_{(\R^+)^3} \1{B_t}(u,x,y) \left(\mathcal{N}_N(du,dx,dy)-\lambda N du \nu(dx,dy)\right)$ , de sorte que $C_N(t) = M_N(t) + \lambda \E{C(t)} $
+
+\begin{lemma}
+$(M_N(t))$ est une martingale de processus croissant associé $\lambda\E{C(t)}$
+\end{lemma}
+
+
+\end{proof}
 
 
 \end{document}
+
+
+
+
+\begin{defintion}
+La n-ième tentative de réservation peut être définie par un 6-uplet $(t_n,p_n,\sigma_n,\theta_{1,n},\theta_{2,n},\epsilon_n$ où :
+\begin{itemize}
+\item $t_n$ est le moment de l'inscription de la réservation
+\item $p_n$ est le temps de pré-réservation de la n-ième réservation
+\item $\sigma_n$ est le temps de réservation de la n-ième réservation
+\item $\theta_{1,n}$ est le temps d'annulation de la réservation.
+
+Si $\theta_{1,n} < p_n$, alors l'usager annule sa réservation au temps $t_n+\theta_{1,n}$ et toute tentative de réservation ultérieure  ne tient pas compte de cette réservation pour déterminer si les créneaux sont disponibles.
+
+Si $\theta_{1,n} \geq p_n$, la réservation démarre comme prévu en $t_n + p_n$
+
+\item $\theta_{2,n}$ est le temps de rendu anticipé du véhicule.
+
+Si $\theta_{2,n} < \sigma_n$, alors l'usager rend son véhicule au temps $t_n+p_n+\theta_{2,n}$ et toute tentative de réservation ultérieure  ne tient pas compte de cette réservation pour déterminer si les créneaux sont disponibles.
+
+Si $\theta_{2,n} \geq \sigma_n$, alors la réservation se termine comme prévu en $t_n+p_n+\sigma_n$
+
+\item $\epsilon_n$ va correspondre à la validation de la réservation et vaut 1 si cette réservation ne rentre pas en conflit avec les réservations précédentes au moment de l'inscription.
+\end{itemize}
+\end{defintion}
+
+
+
+\begin{definition}{Capacité prévue}
+
+La capacité prévue en $t$ à l'instant $t^{*}$ correspond à la prévision de la capacité en $t_1$ à partir des informations disponibles en $t_0$, c'est à dire sans tenir compte des inscriptions ultérieures ni des annulations et fin de réservations anticipées qui auront lieu après $t^{*}$.
+
+Elle vaut alors
+\begin{equation}
+C(t,t^{*}) = %\sum_{n=0}^{\infty} \epsilon_n\,\mathbbm{1}_{\{t_n<t^{*}\}} \left( \mathbbm{1}_{\{t^{*}<t_n+\theta_{1,n},t^{*}<t_n+p_n+\theta_{2,n}\}} \,\mathbbm{1}_{\{t_n+p_n<t<t_n+p_n+\sigma_n,\}} + \mathbbm{1}_{\{t_n+\theta_{1,n}\leq t^{*},\theta_{1,n}\geq p_n,t^{*}<t_n+p_n+\theta_{2,n}\}} \,\mathbbm{1}_{\{t_n+p_n<t<t_n+p_n+\sigma_n,\}} + \mathbbm{1}_{\{t_n+\theta_{1,n}\leq t^{*},\theta_{1,n}\geq p_n,t^{*}<t_n+p_n+\theta_{2,n}\}} \,\mathbbm{1}_{\{t_n+p_n<t<t_n+p_n+\sigma_n,\}} + \right)
+\end{equation}
+
+\end{definition}
