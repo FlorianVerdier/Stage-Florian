@@ -25,9 +25,10 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\1}[1]{\mathbbm{1}_{\{#1\}} }
 
-\newtheorem{theorem}{Theorem}
+\newtheorem{lemme}{Lemme}
+\newtheorem{theorem}{Théorème}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}{Définition}
 \renewcommand{\thefigure}{\arabic{figure}}
 
 \begin{document}
@@ -663,13 +664,18 @@ C_N(t) &=  \mathcal{N}_N(B_t)\\
 &= \int_{(\R^+)^3} \1{B_t}(u,x,y) \mathcal{N}_N(du,dx,dy)\\
 &= \int_{(\R^+)^3} \1{B_t}(u,x,y) \left(\mathcal{N}_N(du,dx,dy)-\lambda N du \nu(dx,dy)\right)\\ &\,\,\,+ \int_{(\R^+)^3} \1{B_t}(u,x,y) \lambda N du \nu(dx,dy)\\
 \end{align*}
+\end{proof}
+\end{document}
 
+Notons $M_N(t) = \int_{(\R^+)^3} \1{B_t}(u,x,y) \left(\mathcal{N}_N(du,dx,dy)-\lambda N du \nu(dx,dy)\right)$ , de sorte que $C_N(t) = M_N(t) + \lambda N \E{C(t)} $
 
-Notons $M_N(t) = \int_{(\R^+)^3} \1{B_t}(u,x,y) \left(\mathcal{N}_N(du,dx,dy)-\lambda N du \nu(dx,dy)\right)$ , de sorte que $C_N(t) = M_N(t) + \lambda \E{C(t)} $
+\begin{lemme}
+$(M_N(t))$ est une martingale de processus croissant associé $\lambda N \E{C(t)}$
+\end{lemme}
 
-\begin{lemma}
-$(M_N(t))$ est une martingale de processus croissant associé $\lambda\E{C(t)}$
-\end{lemma}
+Par la suite, pour simplifier l'écriture, on notera $x(s) = \lambda \E{C(s)}$
+
+$\underset{0\leq s \leq t}{\sup} |\bar{C}_N(t)-x(s)| = \frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_N(s)| $
 
 
 \end{proof}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2023.4.6)  9 JUN 2023 21:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2023.4.6)  9 JUN 2023 21:55
 entering extended mode
 **./analyse_donnée.tex
 (analyse_donnée.tex
@@ -699,48 +699,49 @@ tex)
 \pgf@cal@easter@M=\count303
 \pgf@cal@easter@julianday=\count304
 )))
-\c@theorem=\count305
-\c@definition=\count306
+\c@lemme=\count305
+\c@theorem=\count306
+\c@definition=\count307
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 mode.def
 File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count307
+\l__kernel_color_stack_int=\count308
 \l__pdf_internal_box=\box59
 ) (analyse_donnée.aux)
 \openout1 = `analyse_donnée.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Info: Redefining \degres on input line 33.
-LaTeX Info: Redefining \dots on input line 33.
-LaTeX Info: Redefining \up on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Info: Redefining \degres on input line 34.
+LaTeX Info: Redefining \dots on input line 34.
+LaTeX Info: Redefining \up on input line 34.
  ABD: EveryShipout initializing macros
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count308
+\scratchcounter=\count309
 \scratchdimen=\dimen277
 \scratchbox=\box60
-\nofMPsegments=\count309
-\nofMParguments=\count310
+\nofMPsegments=\count310
+\nofMParguments=\count311
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count311
+\MPscratchCnt=\count312
 \MPscratchDim=\dimen278
-\MPnumerator=\count312
-\makeMPintoPDFobject=\count313
+\MPnumerator=\count313
+\makeMPintoPDFobject=\count314
 \everyMPtoPDFconversion=\toks47
 )
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -755,26 +756,26 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.17}).
 [1
 
 {C:/Users/flori/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
-Package pgfplots info on input line 162: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 163: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 PGFPlots: reading {graphs/evolution_annee.txt}
-LaTeX Font Info:    Trying to load font information for U+msa on input line 164
+LaTeX Font Info:    Trying to load font information for U+msa on input line 165
 .
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 164
+LaTeX Font Info:    Trying to load font information for U+msb on input line 165
 .
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (4.94455pt too wide) in paragraph at lines 165--166
+Overfull \hbox (4.94455pt too wide) in paragraph at lines 166--167
  [][] 
  []
 
-Package pgfplots info on input line 195: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 196: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 PGFPlots: reading {graphs/semaine_type.txt}
 
@@ -786,7 +787,7 @@ Missing character: There is no ; in font nullfont!
 PGFPlots: reading {graphs/Temps_de_trajet_lisse.txt}
 Missing character: There is no ; in font nullfont!
  [6]
-Overfull \hbox (6.50041pt too wide) in paragraph at lines 286--287
+Overfull \hbox (6.50041pt too wide) in paragraph at lines 287--288
 []\T1/cmr/m/n/12 Le choix d'une loi log-normale est confirm� par l'�tude des gr
 aphes quantile-
  []
@@ -822,55 +823,29 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [10]
 
 Package pgfplots Warning: Ignoring illegal input argument ymin=0: cannot apply 
-log. on input line 460.
+log. on input line 461.
 
  [warning /pgfplots/warning/illegal user argument in log axis]
-Package pgfplots info on input line 460: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 461: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {graphs/Temps_annulation_j.txt}
 Missing character: There is no ; in font nullfont!
 [11] [12] [13]
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 568
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 569
 .
  (C:\Program Files\MiKTeX\tex/latex/bbm\ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 ) [14] [15]
-
-! LaTeX Error: Environment lemma undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.670 \begin{lemma}
-                   
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: \begin{proof} on input line 660 ended by \end{lemma}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.672 \end{lemma}
-                 
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 [16] (analyse_donnée.aux) )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 104 ({)
+### simple group (level 1) entered at line 105 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26139 strings out of 480777
- 663440 string characters out of 2897060
- 2118019 words of memory out of 3000000
- 41693 multiletter control sequences out of 15000+600000
+ 26144 strings out of 480777
+ 663475 string characters out of 2897060
+ 2118058 words of memory out of 3000000
+ 41698 multiletter control sequences out of 15000+600000
  544895 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  74i,19n,127p,742b,2281s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -898,7 +873,7 @@ fb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sf
 rm0800.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-
 super/sfrm1200.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/pu
 blic/cm-super/sfti1200.pfb>
-Output written on analyse_donnée.pdf (16 pages, 499267 bytes).
+Output written on analyse_donnée.pdf (16 pages, 498479 bytes).
 PDF statistics:
  144 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
