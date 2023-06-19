@@ -651,6 +651,49 @@ Le processus renormalisé tend en loi vers $\lambda\E{\min((t-p)^+,\sigma)}$,
 
 \end{theorem}
 
+Avant de démontrer ceci, il faut tout d'abord démontrer le résultat suivant.
+\begin{theorem}{ }
+\label{processus_croissant}
+Soit $\mathcal{N}$ un processus de poisson marqué sur $\R_+ \times K$ d'intensité $\mu$.
+
+Alors $M_t = \int_{[0,t] \times K} \left(\mathcal{N}(du,dx) - \mu(du,dx)\right)$ est une martingale pour la filtration naturelle associée à $\mathcal{N}$.
+
+De plus, en notant $A_t = [0,t] \times K$, le processus croissant associé à $M_t$ est 
+$$<M>(t) = \mu(A_t)$$
+\end{theorem}
+
+
+\begin{proof}{}
+
+Soient $t,s>0$
+\begin{align*}
+\E{M_{t+s} - M_t|\mathcal{F}_t} &= \E{\int_{[t,t+s] \times K} \left(\mathcal{N}(du,dx) - \mu(du,dx)\right)|\mathcal{F}_t}\\
+&= \E{\int_{[t,t+s] \times K} \left(\mathcal{N}(du,dx) - \mu(du,dx)\right)}\\
+&=\int_{[t,t+s] \times K} \left(\E{\mathcal{N}(du,dx)} - \mu(du,dx)\right)\\
+&=\int_{[t,t+s] \times K} \left(\mu(du,dx) - \mu(du,dx)\right)\\
+&= 0
+\end{align*}
+
+$(M_t)$ est donc bien une martingale.
+Il s'agit désormais de calculer le processus croissant associé. On va pour cela calculer $\E{M_{t+s}^2 - M_t^2|\mathcal{F}_t}$ afin de déterminer le processus $N_t$ faisant de $(M_t^2-N_t)$ une martingale.
+
+\begin{align*}
+\E{M_{t+s}^2 - M_t^2|\mathcal{F}_t} &= \E{(M_{t+s} - M_t)^2 - 2 M_t(M_{t+s} - M_t)|\mathcal{F}_t}\\
+&= \E{(M_{t+s} - M_t)^2|\mathcal{F}_t} - 2 \E{M_t(M_{t+s} - M_t)|\mathcal{F}_t}\\
+&= \E{(M_{t+s} - M_t)^2} - 2 \E{M_t|\mathcal{F_t}} \E{(M_{t+s} - M_t)|\mathcal{F}_t}\\
+&= \E{\int_{[t,t+s] \times K} \left(\mathcal{N}(du,dx) - \mu(du,dx)\right)} - 0 \\
+&= \E{\left(\mathcal{N}(B_{t,t+s}) - \mu(B_{t,t+s})\right)^2} \text{ avec } B_{t,t+s} = [t,t+s]\times K\\
+&= \mu(B_{t,t+s}) \text{ en tant que variance d'une loi de poisson}\\
+&= \mu(A_{t+s}) - \mu(A_{t})
+\end{align*}
+
+Ainsi $(M_t^2-\mu(A_{t}))$ une martingale.\\
+$<M>(t) = \mu(A_{t})$
+
+\end{proof}
+
+
+
 \begin{proof}
 
 Cette démonstration suit une démarche similaire à  celle effectuée dans l'article [] présentant un calcul similaire pour ce qui s'apparenterait à un système sans temps de pré-réservation.
@@ -673,15 +716,27 @@ C_N(t) &= \int_{(\R^+)^3} \1{0\leq u+x \leq t} \mathcal{N}_N(du,dx,dy)\\ &\,\,\,
 où $\Phi_1$ est défini sur $\R_+^3$ par $\Phi_1(u,x,y) = (u+x,x,y)$, $\mathcal{N}_{N,\Phi_1}$  est un processus de poisson sur $\R_+^3$ d'intensité l'image par $\Phi_1$ de celle de $\mathcal{N}_N$, soit $\lambda N \1{u\geq x}du\nu(dx,dy)$, où $\nu$ correspond à la densité de la loi jointe de $(p,\sigma)$.\\
 Les notations sont similaires pour $\Phi_2$, défini sur $\R_+^3$ par $\Phi_2(u,x,y) = (u+x+y,x,y)$ et $\mathcal{N}_{N,\Phi_1}$ a pour intensité $\lambda N \1{u\geq x+y}du\nu(dx,dy)$.\\
 
-Il s'agit alors de définir des martingales s'appuyant sur ces deux intégrales.\\
 
-Notons $\displaystyle M_{N,\Phi_1}(t) = \int_{[0,t]\times (\R^+)^2}  \left(\mathcal{N}_{N,\Phi_1}(du,dx,dy)-\1{u\geq x}\lambda N du \nu(dx,dy)\right)$.\\
-Pour la filtration associée à $\mathcal{N}_{N,\Phi_1}$, c'est une martingale de de processus croissant associé\\
-  $$<M_{N,\Phi_1}>(t) = \lambda N \E{(t-p)^+}$$\\
+Le Théorème \ref{processus_croissant} permet de montrer les deux résultats suivants:
+
+
+\begin{itemize}
+
+\item $\displaystyle M_{N,\Phi_1}(t) = \int_{[0,t]\times (\R^+)^2}  \left(\mathcal{N}_{N,\Phi_1}(du,dx,dy)-\1{u\geq x}\lambda N du \nu(dx,dy)\right)$ est une martingale pour la filtration associée à $\mathcal{N}_{N,\Phi_1}$. Son processus croissant associé vaut\\
   
-De même, $M_{N,\Phi_2}(t) = \int_{[0,t]\times (\R^+)^2}  \left(\mathcal{N}_N(du,dx,dy)-\1{u\geq x+y }\lambda N du \nu(dx,dy)\right)$ est une martingale de processus croissant associé \\
+\begin{align*}
+<M_{N,\Phi_1}>(t) &= \int_{[0,t]\times \R_+^2}\lambda N \1{u\geq x}du\nu(dx,dy)\\
+&= \lambda N \int_0^t\int_{[0,u]*\R_+}\nu(dx,dy) du\\
+&= \lambda N \int_{[0,t]*\R_+}\int_x^t du \nu(dx,dy)\\
+&= \lambda N \int_{[0,t]*\R_+}(t-x) \nu(dx,dy)\\
+&= \lambda N \int_{\R_+^2}(t-x)^+ \nu(dx,dy)\\
+&= \lambda N \E{(t-p)^+}
+\end{align*}  
+  
+  
+\item  $M_{N,\Phi_2}(t) = \int_{[0,t]\times (\R^+)^2}  \left(\mathcal{N}_N(du,dx,dy)-\1{u\geq x+y }\lambda N du \nu(dx,dy)\right)$ est une martingale de processus croissant associé \\
 $$<M_{N,\Phi_2}>(t) = \lambda N \E{(t-p-\sigma)^+}$$\\
-
+\end{itemize}
 On peut alors noter:
 
 $$\frac{L_N(t)}{N} = \frac{M_{N,\Phi_1}(t)}{N} - \frac{M_{N,\Phi_2}(t)}{N} + \lambda  \E{(t-p)^+-(t-p-\sigma)^+}$$
@@ -694,7 +749,7 @@ $\underset{0\leq s \leq t}{\sup} |\bar{C}_N(t)-x(s)| \leq \frac{1}{N}\underset{0
 
 \begin{align*}
 \E{\frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_1}(s)|} &\leq \frac{1}{N}\sqrt{\E{\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_1}(s)|^2}} \text{ par Cauchy-Scwartz}\\
-& \leq \frac{1}{N}\sqrt{4 \E{|M_{N,\Phi_1}(t)|^2}}  \text{ par inégalité de Doob}
+& \leq \frac{1}{N}\sqrt{4 \E{|M_{N,\Phi_1}(t)|^2}}  \text{ par inégalité de Doob}\\
 & \leq \frac{2}{N}\sqrt{<M_{N,\Phi_1}>(t)}\\
 &\leq \frac{2}{N}\sqrt{ \lambda N \E{(t-p)^+}}\\
 &\leq \frac{2\sqrt{ \lambda \E{(t-p)^+}}}{\sqrt{N}}\\
