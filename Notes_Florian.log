@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2023.4.6)  19 JUN 2023 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2023.4.6)  28 JUN 2023 20:24
 entering extended mode
 **./Notes_Florian.tex
 (Notes_Florian.tex
@@ -530,6 +530,33 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 )
+(C:\Program Files\MiKTeX\tex/latex/algorithms\algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(C:\Program Files\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count287
+\float@exts=\toks42
+\float@box=\box58
+\@float@everytoks=\toks43
+\@floatcapt=\box59
+)
+(C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks44
+\c@algorithm=\count288
+)
+(C:\Program Files\MiKTeX\tex/latex/algorithms\algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count289
+\c@ALC@line=\count290
+\c@ALC@rem=\count291
+\c@ALC@depth=\count292
+\ALC@tlm=\skip55
+\algorithmicindent=\skip56
+)
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarybabel.code.tex
 File: tikzlibrarybabel.code.tex 2020/01/08 v3.1.5b (3.1.5b)
@@ -553,11 +580,11 @@ decorations.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen264
 \pgfdecoratedinputsegmentremainingdistance=\dimen265
 \pgf@decorate@distancetomove=\dimen266
-\pgf@decorate@repeatstate=\count287
+\pgf@decorate@repeatstate=\count293
 \pgfdecorationsegmentamplitude=\dimen267
 \pgfdecorationsegmentlength=\dimen268
 )
-\tikz@lib@dec@box=\box58
+\tikz@lib@dec@box=\box60
 )
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorat
 ions\pgflibrarydecorations.markings.code.tex))
@@ -570,12 +597,12 @@ Package: pgfplots 2020/02/29 v1.17 Data Visualization (1.17)
 e.tex
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore
 .code.tex
-\t@pgfplots@toka=\toks42
-\t@pgfplots@tokb=\toks43
-\t@pgfplots@tokc=\toks44
+\t@pgfplots@toka=\toks45
+\t@pgfplots@tokb=\toks46
+\t@pgfplots@tokc=\toks47
 \pgfplots@tmpa=\dimen269
-\c@pgfplots@coordindex=\count288
-\c@pgfplots@scanlineindex=\count289
+\c@pgfplots@coordindex=\count294
+\c@pgfplots@scanlineindex=\count295
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplots
 sysgeneric.code.tex))
@@ -593,14 +620,14 @@ e\pgfplotsliststructure.code.tex)
 e\pgfplotsliststructureext.code.tex)
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count290
+\c@pgfplotsarray@tmp=\count296
 )
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsmatrix.code.tex)
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgf
 plotstableshared.code.tex
-\c@pgfplotstable@counta=\count291
-\t@pgfplotstable@a=\toks45
+\c@pgfplotstable@counta=\count297
+\t@pgfplotstable@a=\toks48
 )
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
 e\pgfplotsdeque.code.tex)
@@ -612,7 +639,7 @@ sbinary.data.code.tex))
 sutil.verb.code.tex)
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibr
 arypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count292
+\c@pgfplotslibrarysurf@no=\count298
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibra
 rypgfplots.surfshading.pgfsys-pdftex.def)))
@@ -648,7 +675,7 @@ ions\pgflibrarydecorations.pathmorphing.code.tex))
 z/libraries\tikzlibrarydecorations.pathreplacing.code.tex
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorat
 ions\pgflibrarydecorations.pathreplacing.code.tex))
-\pgfplots@numplots=\count293
+\pgfplots@numplots=\count299
 \pgfplots@xmin@reg=\dimen270
 \pgfplots@xmax@reg=\dimen271
 \pgfplots@ymin@reg=\dimen272
@@ -687,62 +714,62 @@ File: pgfcalendar.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
 tex)
-\pgfcalendarcurrentjulian=\count294
-\pgf@cal@easter@Y=\count295
-\pgf@cal@easter@G=\count296
-\pgf@cal@easter@C=\count297
-\pgf@cal@easter@X=\count298
-\pgf@cal@easter@Z=\count299
-\pgf@cal@easter@D=\count300
-\pgf@cal@easter@E=\count301
-\pgf@cal@easter@N=\count302
-\pgf@cal@easter@M=\count303
-\pgf@cal@easter@julianday=\count304
+\pgfcalendarcurrentjulian=\count300
+\pgf@cal@easter@Y=\count301
+\pgf@cal@easter@G=\count302
+\pgf@cal@easter@C=\count303
+\pgf@cal@easter@X=\count304
+\pgf@cal@easter@Z=\count305
+\pgf@cal@easter@D=\count306
+\pgf@cal@easter@E=\count307
+\pgf@cal@easter@N=\count308
+\pgf@cal@easter@M=\count309
+\pgf@cal@easter@julianday=\count310
 )))
-\c@lemme=\count305
-\c@theorem=\count306
-\c@definition=\count307
+\c@lemme=\count311
+\c@theorem=\count312
+\c@definition=\count313
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 mode.def
 File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count308
-\l__pdf_internal_box=\box59
+\l__kernel_color_stack_int=\count314
+\l__pdf_internal_box=\box61
 ) (Notes_Florian.aux)
 \openout1 = `Notes_Florian.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Info: Redefining \degres on input line 33.
-LaTeX Info: Redefining \dots on input line 33.
-LaTeX Info: Redefining \up on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Info: Redefining \degres on input line 35.
+LaTeX Info: Redefining \dots on input line 35.
+LaTeX Info: Redefining \up on input line 35.
  ABD: EveryShipout initializing macros
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count309
+\scratchcounter=\count315
 \scratchdimen=\dimen277
-\scratchbox=\box60
-\nofMPsegments=\count310
-\nofMParguments=\count311
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count312
+\scratchbox=\box62
+\nofMPsegments=\count316
+\nofMParguments=\count317
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count318
 \MPscratchDim=\dimen278
-\MPnumerator=\count313
-\makeMPintoPDFobject=\count314
-\everyMPtoPDFconversion=\toks47
+\MPnumerator=\count319
+\makeMPintoPDFobject=\count320
+\everyMPtoPDFconversion=\toks50
 )
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -756,26 +783,26 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.17}).
 [1
 
 {C:/Users/flori/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3]
-Package pgfplots info on input line 162: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 161: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 PGFPlots: reading {graphs/evolution_annee.txt}
-LaTeX Font Info:    Trying to load font information for U+msa on input line 164
+LaTeX Font Info:    Trying to load font information for U+msa on input line 163
 .
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 164
+LaTeX Font Info:    Trying to load font information for U+msb on input line 163
 .
 
 (C:\Users\flori\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (4.94455pt too wide) in paragraph at lines 165--166
+Overfull \hbox (4.94455pt too wide) in paragraph at lines 164--165
  [][] 
  []
 
-Package pgfplots info on input line 195: Using 'lua backend=false' for axis: x 
+Package pgfplots info on input line 194: Using 'lua backend=false' for axis: x 
 coord trafo unsupported.
 PGFPlots: reading {graphs/semaine_type.txt}
 
@@ -787,7 +814,7 @@ Missing character: There is no ; in font nullfont!
 PGFPlots: reading {graphs/Temps_de_trajet_lisse.txt}
 Missing character: There is no ; in font nullfont!
  [6]
-Overfull \hbox (6.50041pt too wide) in paragraph at lines 286--287
+Overfull \hbox (6.50041pt too wide) in paragraph at lines 285--286
 []\T1/cmr/m/n/12 Le choix d'une loi log-normale est confirmé par l'étude des gr
 aphes quantile-
  []
@@ -816,86 +843,123 @@ PGFPlots: reading {graphs/Distance_de_trajet_ajustement_log_normal.txt}
 Missing character: There is no ; in font nullfont!
 PGFPlots: reading {graphs/Temps_annulation.txt}
 Missing character: There is no ; in font nullfont!
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[10]
+ [10]
 
 LaTeX Warning: Reference `dÃ©lai_annulation_jours' on page 11 undefined on inpu
-t line 448.
+t line 447.
 
 [11]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [12]
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 551
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 550
 .
  (C:\Program Files\MiKTeX\tex/latex/bbm\ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 ) [13] [14] [15]
-Overfull \hbox (3.07912pt too wide) detected at line 688
+Overfull \hbox (15.05576pt too wide) detected at line 688
 []
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 716--718
+Underfull \hbox (badness 10000) in paragraph at lines 717--719
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 725--726
+Underfull \hbox (badness 10000) in paragraph at lines 726--727
 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 737--738
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 738--739
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 739--740
+
+ []
+
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 760--761
+Underfull \hbox (badness 10000) in paragraph at lines 761--762
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 764--765
+Underfull \hbox (badness 10000) in paragraph at lines 765--766
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 774--775
+Underfull \hbox (badness 10000) in paragraph at lines 775--776
 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 788--789
+Underfull \hbox (badness 10000) in paragraph at lines 789--790
 
  []
 
-[20] (Notes_Florian.aux)
+
+Overfull \hbox (39.68431pt too wide) detected at line 809
+\OML/cmm/m/it/12 L[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [][]
+ \U/bbm/m/n/12 1[]\OMS/cmsy/m/n/12 N[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 du; dw;
+ dx; dy; dz\OT1/cmr/m/n/12 ) + [][] \U/bbm/m/n/12 1[]\OMS/cmsy/m/n/12 N[]\OT1/c
+mr/m/n/12 (\OML/cmm/m/it/12 du; dw; dx; dy; dz\OT1/cmr/m/n/12 )
+ []
+
+
+Overfull \hbox (55.52759pt too wide) detected at line 815
+\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [][]
+ []
+ []
+
+
+Overfull \hbox (94.1346pt too wide) detected at line 819
+\OML/cmm/m/it/12 M[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [][]
+ []
+ []
+
+[20]
+Overfull \hbox (76.55801pt too wide) detected at line 862
+[]
+ []
+
+
+Overfull \hbox (7.58559pt too wide) in paragraph at lines 868--870
+[]\T1/cmr/m/n/12 le terme $\U/msb/m/n/12 E []$ \T1/cmr/m/n/12 est po-
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 910--911
+
+ []
+
+[22] [23]
+Overfull \hbox (0.93733pt too wide) in paragraph at lines 965--965
+[]\T1/cmr/bx/n/12 Théorème 9 \T1/cmr/m/n/12 (Li-mite fluide dans le cas sur--cr
+i-tique)\T1/cmr/bx/n/12 . []\T1/cmr/m/it/12 Dans le cas sur-critique,
+ []
+
+[24] (Notes_Florian.aux)
 
 LaTeX Warning: There were undefined references.
 
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 104 ({)
+### simple group (level 1) entered at line 103 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 26131 strings out of 480777
- 663115 string characters out of 2897060
- 2118058 words of memory out of 3000000
- 41687 multiletter control sequences out of 15000+600000
- 544895 words of font info for 55 fonts, out of 8000000 for 9000
+ 26408 strings out of 480777
+ 666636 string characters out of 2897060
+ 2121631 words of memory out of 3000000
+ 41945 multiletter control sequences out of 15000+600000
+ 548665 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,19n,127p,740b,2281s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 74i,19n,127p,740b,2285s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\flori\AppData\Local\MiKTeX\fonts/pk/ljfour/public/bb
 m/dpi600\bbm12.pk>{C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
 /cm-super/cm-super-t1.enc}<C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/t
@@ -903,26 +967,27 @@ ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/flori/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/flori/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/flori/AppData/Loc
 al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/flori/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/f
-lori/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/
-Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.p
-fb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmsy6.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmsy8.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/flori/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/flori/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/flori/AppDa
-ta/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/flo
-ri/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfcc1200.pfb><C:/U
-sers/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0600.p
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/f
+lori/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:
+/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.
+pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr8.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmsy6.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/flori/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/flori/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/flori/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/flo
+ri/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/U
+sers/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfcc1200.p
 fb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sf
-rm0800.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-
-super/sfrm1200.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/cm-super/sfti1200.pfb>
-Output written on Notes_Florian.pdf (20 pages, 516758 bytes).
+rm0600.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-
+super/sfrm0800.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/type1/pu
+blic/cm-super/sfrm1200.pfb><C:/Users/flori/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/cm-super/sfti1200.pfb>
+Output written on Notes_Florian.pdf (24 pages, 551708 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
+ 173 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
