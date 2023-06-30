@@ -2,15 +2,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{bbm}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{pgf-pie}  
-\usepackage{bbm}
+\usepackage{pgf-pie}
 \usepackage{tikz}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+%\usepackage[nottoc, notlof, notlot]{tocbibind}
 \usetikzlibrary{babel}
 \usetikzlibrary{patterns}
 \usetikzlibrary{decorations.markings}
@@ -34,6 +35,9 @@
 
 \begin{document}
 
+\tableofcontents
+\newpage
+
 \section{Présentation du service étudié}
 \subsection{Principe général de Communauto}
 Communauto est un service proposant de la location de voitures dans différentes villes, majoritairement situées au Canada. Communauto propose la location de voitures sous deux formules :
@@ -42,7 +46,7 @@ Communauto est un service proposant de la location de voitures dans différentes
 \item[basé-station:] Dans ce système, les utilisateurs peuvent utiliser une voiture garée dans l'une des nombreuses stations réparties dans la ville afin d'effectuer un trajet puis de ramener la voiture à la station de départ. Cette formule est principalement destinée aux plus long trajets, planifiés à l'avance, par exemple dans le cadre de voyages sur un week-end. 
 \end{description}
 
-Ces deux systèmes partagent un même abonnement ainsi qu'un tarif identique après 4 heures d'utilisation, ce qui permet des interactions entre ces deux systèmes, par le report d'usager d'un système à l'autre en fonction de la disponibilité.
+Ces deux systèmes partagent un même abonnement ainsi qu'une tarification identique après 4 heures d'utilisation, ce qui permet des interactions entre ces deux systèmes, par le report d'usager d'un système à l'autre en fonction de la disponibilité.
 
 \subsection{Fonctionnement du système et lexique utilisé}
 
@@ -55,7 +59,7 @@ Pour les deux systèmes, on peut séparer le temps entre l'inscription d'une ré
 \begin{tikzpicture}
 
 \draw[->] (0,0) -- (8,0);
-\draw (1,-0.2) -- (1,0.2) node[midway,below] {\tiny{Arrivée de l'usager}};
+\draw (1,-0.2) -- (1,0.2) node[midway,below] {\tiny{Inscription}};
 \draw (5,-0.2) -- (5,0.2) node[midway,below] {\tiny{Début de la}}  node[very near start,below] {\tiny{réservation}};
 \draw (7,-0.2) -- (7,0.2) node[midway,below] {\tiny{Fin de la}}node[very near start,below] {\tiny{réservation}};
 \draw[<->,dashed] (1.1,0.25) -- (4.9,0.25) node[midway,above] {\tiny{Pré-réservation}};
@@ -77,7 +81,7 @@ Dans ce système, les usagers se connectant à un certain instant peuvent sélec
 
 Il est également possible pour un usager d'annuler une réservation effectuée ou encore de rendre la voiture avant la fin prévue de la réservation. Dans ce dernier cas, on parlera de \emph{fin de réservation anticipée} par opposition aux \emph{réservations menées à leur termes}.
 
-Le temps de pré-réservation peut ainsi monter à 1 mois tandis que la durée de réservation, à la différence du free-floating, est définie dès le début même si elle peut être modifiée par la suite.
+Le temps de pré-réservation peut ainsi monter à 1 mois tandis que la durée de réservation, à la différence du free-floating, est définie dès l'inscription mais elle peut être modifiée par la suite.
 
 
 
@@ -85,7 +89,7 @@ Le temps de pré-réservation peut ainsi monter à 1 mois tandis que la durée d
 \subsection{Présentation des données}
 
 Grâce à un partenariat entre Communauto et Polytechnique Montréal, j'ai eu accès aux données correspondant aux réservations de voitures effectuées dans la ville de Montréal. 
-J'ai ainsi pu étudier les données de l'année 2021, comprenant  aussi bien les réservations effectuées sur les voitures en free-floating que sur celles en basés-stations, cela correspondant à respectivement à 69\% et 31\% des réservations effectués.
+J'ai ainsi pu étudier les données de l'année 2021, comprenant  aussi bien les réservations effectuées sur les voitures en free-floating que sur celles en basés-stations, cela correspondant à respectivement à 69\% et 31\% des réservations effectuées.
 
 
 Le système est basé sur plus de 2000 voitures, dont environ 40\% sont en free-floating tandis que 60\% sont des voitures basées-station réparties en près de 500 stations disposées dans la ville.
@@ -93,14 +97,14 @@ Le système est basé sur plus de 2000 voitures, dont environ 40\% sont en free-
 Je disposais pour ces données d'un grand nombre de champs dont ceux que j'ai principalement utilisés sont les suivant:
 \begin{itemize}
 \item la date et l'heure de début et de fin de la réservation
-\item la distance effectuée durant la réservation
+\item la distance effectuée au cours de la réservation
 \item les points de départ et d'arrivée de la réservation. Cela correspond à la localisation de la station pour les basées-station
 \item l'adresse approximative des usagers
-\item lorsque la réservation est annulée, la date d'annulation
+\item la date d'annulation pour les réservations annulées
 \item le statut de la réservation, parmi active, finie prématurément, annulée ou modifiée entre autres
 \end{itemize}
 
-On retrouve dans les données principalement des réservations {actives (menées à leur terme), annulées ou finies prématurément ainsi qu'un très petit nombre de réservations au statut spécial car effectuées par Communauto pour maintenance. Leur répartition est présentée Figure~\ref{Répartition}.
+On retrouve dans les données principalement des réservations {actives (menées à leur terme), annulées ou finies prématurément ainsi qu'un très petit nombre de réservations au statut spécial car effectuées par Communauto pour la maintenance des véhicules. Leur répartition est présentée Figure~\ref{Répartition}.
 
 \begin{figure}[!h]
 \centering
@@ -127,9 +131,9 @@ On retrouve dans les données principalement des réservations {actives (menées
  	
  	
 \subsection{Nettoyage préalable des  données}
-Pour étudier les données et tenter de déterminer les lois de probabilités par lesquelles on peut approximer les différentes distribution, il faut commencer par nettoyer et filtrer les données:
+Pour étudier les données et tenter de déterminer les lois de probabilités par lesquelles on peut approximer les différentes distributions, il faut commencer par nettoyer et filtrer les données:
 
-Dans un premier temps, il s'agit ainsi d'isoler les réservations réelles, c'est à dire les réservations effectuées par les usagers e, et d'éliminer les autres, par exemple les réservations pour maintenance ou pour changer la voiture de station de rattachement, ainsi que des restes de réservations annulées, qu'en peut identifier par une distance parcourue nulle et un tarif appliqué nul  .
+Dans un premier temps, il s'agit ainsi d'isoler les réservations réelles, c'est à dire les réservations réellement effectuées par les usagers, et d'éliminer les autres, par exemple les réservations pour maintenance ou pour changer la voiture de station de rattachement, ainsi que quelques réservations annulées au mauvais statut, qu'on peut identifier par une distance parcourue nulle et un tarif appliqué nul.
 	
 
 Suivant le paramètre étudié, j'ai pu avoir à filtrer selon le statut de la réservation, afin d'éliminer les trajets annulés pour mesurer le temps de réservation effectif par exemple.
@@ -173,7 +177,6 @@ Ce graphe ne prend pas en compte les réservations ayant commencé avant 2021, c
 
 La Figure~\ref{semaine_type} présente la capacité utilisée typique durant une semaine, obtenue en moyennant chaque jour de la semaine sur les 53 semaines de l'année 2021 et qui permet de voir plus finement ce qui se passe au cours d'une semaine.
 
-
 \begin{figure}[!h]
 \centering
 \begin{tikzpicture}[scale=0.4]
@@ -199,10 +202,9 @@ xticklabels={Lundi, Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche }
 \label{semaine_type}
 \end{figure}
 
-On y observe ainsi de grandes fluctuations de l'occupation au cours de la semaine, principalement à l'échelle de la journée avec des pics chaque jour aux alentours de 13h et des périodes de creux durant les nuits.
-Cette unicité du pic est intéressante car c'est un comportement différent des voitures de free-floating, présentant un pic d'utilisation en matinée et en soirée (Figure à tracer), 
+On y observe ainsi de grandes fluctuations de l'occupation au cours de la semaine, principalement à l'échelle de la journée avec des pics chaque jour aux alentours de 13h et des périodes de creux durant les nuits. 
 
-Par ailleurs un effet dû aux weekends est très clairement présent, tout d'abord avec des pics en journée plus hauts que durant le reste de la semaine mais aussi avec des creux plus élevés, représentant les usagers qui réservent une voiture afin de partir en week-end avec. Par ailleurs, on remarque que le vendredi fait en quelque sorte la transition entre la semaine et le week-end, avec un pic intermédiaire en milieu de journée et un creux de nuit entre vendredi et samedi plus chargée que les nuits de semaine, ce qui montre que les départs en weekends peuvent commencer dès le vendredi.
+Par ailleurs, un effet dû aux weekends est très clairement présent, tout d'abord avec des pics en journée plus hauts le samedi et dimanche que durant le reste de la semaine mais aussi avec des creux plus élevés, correspondant aux usagers qui réservent une voiture afin de partir tout au long du week-end. On remarque que le vendredi fait en quelque sorte la transition entre la semaine et le week-end, avec un pic intermédiaire en milieu de journée et un creux de nuit entre vendredi et samedi plus chargée que les nuits de semaine, ce qui montre que les départs en weekends peuvent commencer dès le vendredi.
 
 
 
@@ -216,7 +218,7 @@ Par ailleurs un effet dû aux weekends est très clairement présent, tout d'abo
 
 On mesure un temps de réservation moyen de 7.8h alors que le maximum de la distribution est situé à 2h et le temps médian est lui de 3.5h. La moyenne du temps de réservation est en effet fortement augmentée par la présence de très longues réservations, 1\% des réservations durant notamment plus de 2 semaines, soit plus de 300h.
 
-De plus le kurtosis de cette distribution vaut 160, ce qui indique que l'on a affaire à une distribution à queue lourde, c'est à dire qu'elle possède une queue plus épaisse qu'une loi normale et donc que les événements extrêmes y sont plus probables.
+De plus le kurtosis de cette distribution vaut 160, ce qui indique que l'on a affaire à une distribution à queue lourde, c'est à dire qu'elle possède une queue plus épaisse qu'une loi normale et donc que les événements extrêmes y sont plus probables que dans le cas d'une loi-normale. C'est donc par une loi à queue lourde que l'on cherchera à approcher le temps de réservation par la suite.
 
 
 
@@ -225,11 +227,11 @@ De plus le kurtosis de cette distribution vaut 160, ce qui indique que l'on a af
 Afin de déterminer des informations plus fines, il faut étudier l'allure de la distribution:
 Pour cela, dans le cadre du temps de réservation des usagers, le champ \emph{res\_trip\_length\_hr} présent dans les données correspond précisément au temps de réservation de chaque élément.
 
-Il ne comprend supposément que des temps définies au quart d'heure près, les réservations pour les voitures basés-station se faisant sur des créneaux de la taille d'un quart d'heure. Cependant, on retrouve parmi les données certaines valeurs aberrantes, telles des réservations durant 1 ou 40 minutes par exemple.  Cela correspondant à seulement 13 réservations, j'ai décidé de les enlever de l'étude du temps de réservation.
+Il ne comprend supposément que des temps définies au quart d'heure près, les réservations pour les voitures basés-station se faisant sur des créneaux de la taille d'un quart d'heure. Cependant, on retrouve parmi les données certaines valeurs aberrantes, telles des réservations durant 1 ou 40 minutes par exemple.  Cela correspondant à seulement 13 réservations, j'ai décidé de les exclure de l'étude du temps de réservation.
 
 On peut alors obtenir la répartition empirique des temps de réservation (courbe bleue sur la Figure~\ref{lissage_courbe}) qui reste néanmoins très irrégulière; on peut en effet observer une certaine périodicité d'ordre 4, certainement due aux utilisateurs, qui auront une plus grande tendance à réserver une durée entière en heures. Pour la même raison, on observe un pic de réservations d'une durée de 10 heures ainsi que des pics successifs présents pour tout les jours entiers.
 
-Afin de pouvoir exploiter la courbe, il est nécessaire de lisser la courbe, par exemple avec un estimateur à noyau de fenêtre assez large pour enlever ces périodicités. J'ai préféré un estimateur à taille de noyau variable afin de ne pas trop écraser les données présentes à l'origine et ainsi de garder l'allure générale de la courbe, ce qui est réalisé sur la courbe rouge en Figure~\ref{lissage_courbe}.
+Afin de pouvoir exploiter la courbe, il est nécessaire de lisser la courbe, par exemple avec un estimateur à noyau de fenêtre assez large pour enlever ces périodicités. J'ai préféré un estimateur à taille de noyau variable afin de ne pas trop écraser les données présentes à l'origine et ainsi garder l'allure générale de la courbe, ce qui est réalisé sur la courbe rouge en Figure~\ref{lissage_courbe}.
 
 
 \begin{figure} [h]
@@ -239,7 +241,7 @@ Afin de pouvoir exploiter la courbe, il est nécessaire de lisser la courbe, par
 xmin=0, ymin=0, xmax=25, ymax=0.07,
 ylabel={Densité},
 ylabel style={xshift=+9pt},
-xlabel={Temps de Réservation (en heure)},
+xlabel={Temps de Réservation (en heures)},
 xlabel style={xshift=+9pt},
 width=\linewidth,height=\linewidth
 ]
@@ -256,7 +258,7 @@ table[x=x,y=y]{graphs/Temps_de_trajet_lisse.txt};;
 
 \subsubsection{Détermination de la loi la mieux adaptée aux données}
 
-A partir de cette courbe lissée, j'ai cherché à déterminer par quelle loi l'approcher pour correspondre le mieux aux données et ainsi adapter le mieux le modèle. Pour cela, je me suis concentré sur des lois à queues lourdes, à savoir notamment loi gamma, loi log-normale, loi de Weibull ou encore loi de Burr.
+A partir de cette courbe lissée, j'ai cherché à déterminer par quelle loi l'approcher pour correspondre le mieux aux données. Pour cela, je me suis concentré sur des lois à queues lourdes, à savoir notamment loi gamma, loi log-normale, loi de Weibull ou encore loi de Burr.
 
 Je les aies comparées à la distribution empirique du temps de réservation en utilisant la distance en variation totale:
 
@@ -272,17 +274,17 @@ Après optimisation des différents paramètres pour les différentes lois, j'ai
 \begin{tabular}{c|c}
 Loi approximante & Distance\\
 \hline
-Loi gamma $\Gamma(0.63,70.82)$&  0.23\\
-Loi Log-normale $\log-\mathcal{N}(2.62,0.9)$ & 0.17 \\
+Loi gamma: $\Gamma(0.63,70.82)$&  0.23\\
+Loi Log-normale: $\log-\mathcal{N}(2.62,0.9)$ & 0.17 \\
 Loi de Weibull$(k =1.13  ,\lambda = 16,7)$ & 0.24\\
 \end{tabular}
-\caption{Distance entre différentes lois et la distribution du temps de réservation}
+\caption{Distance entre différentes lois et la distribution empirique du temps de réservation}
 \label{Distance_à_temps_réservation}
 \end{figure}
 
-Grâce à cela, il s'avère que c'est une loi log-normale de paramètres $\mu = 2.6$ et $\sigma^2=0.9$ qui permet la meilleure approximation du temps de réservation.
+Avec cela, il s'avère que c'est une loi log-normale de paramètres $\mu = 2.6$ et $\sigma^2=0.9$ qui permet la meilleure approximation du temps de réservation.
 
-Le choix d'une loi log-normale est confirmé par l'étude des graphes quantile-quantile des différentes distributions théoriques présents en Figure~\ref{Qplot} seule la loi log-normale sélectionnée permet une bonne approximation de la queue de distribution.
+Le choix d'une loi log-normale est confirmé par l'étude des graphes quantile-quantile des différentes distributions théoriques présents en Figure~\ref{Qplot}. En effet, seule la loi log-normale sélectionnée permet une bonne approximation de la queue de distribution.
 
 
 
@@ -346,9 +348,9 @@ table[x=x,y=log_normal]{graphs/Temps_de_trajet_ajustement_lois.txt};
 \subsection{Étude des stations}
 
 \subsubsection{Capacité des stations}
-Dans le cadre de cette étude, je me suis  à  la capacité des stations dans lesquelles sont stationnées les voitures basées-stations ainsi que leur répartition dans la ville.
+Dans le cadre de cette étude, je me suis intéressé à la capacité des stations dans lesquelles sont stationnées les voitures basées-stations ainsi qu'à leur répartition dans la ville.
 
-Pour cela, j'ai isolé les voitures en activité et leurs stations lorsque le maximum de voitures étaient utilisées en simultané, à savoir le 24 juillet à 15h30, avec un pic à plus de 1300 voitures réservées en même temps. J'ai procédé ainsi afin de ne pas avoir des doublons dans les données, dues aux éventuelles voitures changeant de stations au gré des ajustements réalisées par Communauto.
+Pour cela, j'ai isolé les voitures en activité et leurs stations lorsque le maximum de voitures étaient réservées en simultané, à savoir le 24 juillet à 15h30, avec un pic à plus de 1300 voitures réservées en même temps. J'ai procédé ainsi afin de ne pas avoir des doublons dans les données, dues aux éventuelles voitures changeant de stations au gré des ajustements réalisées par Communauto.
 
 Les graphes suivants se basent donc sur l'hypothèse que la majeure partie des voitures étaient réservées à ce moment là, ce qui est assez proche de la réalité car trouver une voiture le week-end, et à fortiori durant la période estivale, est très difficile.
 Les graphes permettent ainsi d'avoir un aperçu du système au maximum de sa capacité.
@@ -383,7 +385,7 @@ La Figure(à ajouter) présente toutes les stations de communauto présentes à 
 \subsection{Étude de la distance de trajet}
 
 
-Afin d'étudier la loi de la distance parcourue, il faut dans un premier temps retirer des données les réservations ayant une distance parcourue nulle, correspondant la majorité du temps à des réservations "à vide", sans bouger la voiture. (Cela peut également correspondre à de très petits trajets, la distance relevée étant arrondie au kilomètre près, mais cela ne concerne qu'un faible nombre de trajets). Ces réservations correspondent à 10\% du total des réservations.
+Afin d'étudier la loi de la distance parcourue, il faut dans un premier temps retirer des données les réservations ayant une distance parcourue nulle, correspondant la majorité du temps à des réservations "à vide", sans que l'utilisateur ne bouge la voiture. (Cela peut également correspondre à de très petits trajets car la distance relevée est arrondie au kilomètre près, mais cela ne concerne qu'un faible nombre de trajets). Ces réservations correspondent à 10\% du total des réservations.
 
 L'étude de la distance est, après cela, tout à fait similaire à celle de du temps de trajet et la distribution qui l'approche le mieux est pareillement une loi log-normale, dont les paramètres sont cette fois $\mu = 3.08 $, $\sigma^2$ = 1.25. La Figure~\ref{Ajustement_distance} présente la loi expérimentale et la loi approchée en superposition.
 
@@ -412,6 +414,9 @@ width=\linewidth,height=\linewidth
 \subsection{Corrélation entre le temps de réservation et la distance parcourue pour obtenir une voiture}
 
 Il est dit que les usagers sont souvent près à traverser la ville afin d'obtenir une voiture. J'ai donc voulu vérifier cela en traçant la distribution de la distance entre la station utilisée et le domicile des usagers pour différents taux d'occupation du système.
+
+
+
 \subsection{Étude du temps d'annulation}
 
 
@@ -440,11 +445,9 @@ table[x=x,y=y]{graphs/Temps_annulation.txt};;
 \end{figure}
 
 
-La première chose que l'on remarque est la présence d'un petit nombre de réservations annulées après leur temps de début de réservation, correspondant à environ 0.5\% des trajets annulés. Ceci n'est pas une erreur des données, ces réservations étant bien payées par les usagers pour le temps écoulée.
+Un point notable est la présence d'un petit nombre de réservations annulées après leur temps de début de réservation. Ceci n'est pas une erreur des données, ces réservations étant bien payées par les usagers pour le temps écoulée. Elles correspondent à 0.5\% des réservations annulées.
 
-Ensuite la majorité des annulations ont lieu juste avant le début du trajet, comme montré par le pic observées sure les données en 0. Ainsi, les réservations annulées le sont en moyenne moins de 3 jours avant le début de la réservation: 62\% étant annulées moins de 24h à l'avance.
-
-Enfin, en regardant au temps long sur la Figure~\ref{délai_annulation_jours}, un léger pic apparaît à 31 jours, représentant les clients annulant leur réservations juste après l'avoir réservée.
+La majorité des annulations a lieu juste avant le début de leur réservation, comme montré par le pic en 0 observé sur les données. Ainsi, les réservations annulées le sont en moyenne moins de 3 jours avant le début de la réservation: 62\% sont même annulées moins de 24h à l'avance.
 
 
 	
@@ -452,23 +455,31 @@ Enfin, en regardant au temps long sur la Figure~\ref{délai_annulation_jours}, u
 
 Les données disposent d'un champ \emph{date d'inscription} correspondant en théorie à la date à laquelle une réservation à été inscrite dans le système, c'est à dire la date à laquelle l'usager à réservé un créneau. Cependant, cette date ne correspond généralement pas à la date d'inscription réelle mais à la date de dernière action sur la réservation, que ce soit son annulation, sa modification ou bien un retour anticipé de la voiture. Ainsi les données présentant leur  date d'inscription initiale sont très partielles et difficiles à identifier.
 
-\section{Simulations numériques}
+\section{Modélisation mathématiques}
 
-Afin de modéliser l'évolution 
-
-
-Dans le cadre du modèle utilisé, on nécessite 5 lois afin de simuler le système:
+Afin de modéliser ce système, on utilise 5 lois permettant de paramétrer l'ensemble de la modélisation. Ce sont ces lois qui serviront à effectuer des simulations numériques:
 \begin{itemize}
 \item la loi du temps d'arrivée des usagers.
-\item la loi du temps de pré-réservation
-\item la loi du temps de réservation
-\item la loi du temps d'annulation de la réservation (le temps entre l'inscription et l'annulation de la réservation)
-\item la loi du temps de de retour anticipé du véhicule
+\item la loi du temps de pré-réservation.
+\item la loi du temps de réservation.
+\item la loi du temps d'annulation de la réservation (le temps entre l'inscription et l'annulation de la réservation).
+\item la loi du temps de de retour anticipé du véhicule.
+\end{itemize}
+\medskip
+Le point crucial consiste à déterminer sous quelles conditions une réservation demandée par un usager est acceptée ou non et cela va dépendre du modèle utilisé:
+\begin{itemize}
+\item Dans le premier modèle étudié, on considérera que les voitures sont indiscernables et que les clients ne réservent pas une voiture spécifique mais une voiture quelconque du système.
+
+Dans ce cas, le critère simple est qu'une réservation est acceptée si, sur l'intervalle voulu par l'usager, la capacité résiduelle après prise en compte des réservations précédentes est toujours strictement positive.
+
+En effet cette condition assure qu'au moins une voiture du système ne sera pas encore utilisée au moment du début de la réservation de chaque client, voiture qui pourra ainsi être prise par ce client.
+
+\item Dans le second modèle étudié, on considérera que les clients souhaitent réserver une voiture spécifique.
+
+La réservation est alors acceptée si la voiture voulue par l'usager est libre sur l'intervalle souhaité.
 \end{itemize}
 
-Le point crucial consiste à déterminer sous quelles conditions une réservation demandée par un usager est acceptée ou non.  Le critère simple est qu'une réservation est acceptée si, sur l'intervalle voulu par l'usager, la capacité résiduelle due aux réservations précédente est toujours strictement positive.
 
-En effet, étant donné qu'on considère un système où le client ne réserve pas une voiture spécifique mais une voiture d'une station, la condition assure qu'au moins une voiture ne sera pas encore utilisée au moment du début de la réservation de chaque client, voiture qui pourra ainsi être prise par le client.
 
 
 \subsection{Le modèle du "Tetris"}
@@ -522,23 +533,24 @@ Cela est schématisé par la Figure~\ref{Tetris}, présentant une capacité maxi
 \label{Tetris}
 \end{figure}
 
-\subsection{Modélisation mathématique}
+\subsection{Modèle simplifié}
 
-On considère pour l'instant un modèle simplifié  où les usagers réservent à l'avance un créneau dans le futur et ne peuvent ni l'annuler ni le finir prématurément. Par ailleurs, comme dans les simulations, on considère que les usagers réservent un créneau et pas directement une voiture.
+On considère pour l'instant un modèle simplifié  où les usagers réservent à l'avance un créneau dans le futur et ne peuvent ni l'annuler ni le finir prématurément. Par ailleurs, on considère pour l'instant un modèle où les usagers réservent un créneau et pas directement une voiture.
 
 \begin{definition}[Représentation des réservations]
 \label{def_res}
-Les tentatives de réservations peuvent être représentée par un processus de poisson marqué sur $\R_+^3$ $(t_n,p_n,\sigma_n)$ avec :
+Les tentatives de réservations sont représentées par un processus de poisson marqué sur $\R_+^3$ $(t_n,p_n,\sigma_n)$ où :
 \begin{itemize}
-\item $t_n$ est le moment de l'inscription de la réservation, suivant un processus de point de Poisson, de paramètre $\lambda$
-\item $p_n$ est la durée de pré-réservation de la réservation. Les $p_n$ sont i.i.d 
-\item $\sigma_n$ est la durée de réservation de la réservation
+\item $t_n$ est le temps d'inscription de la réservation, suivant un processus de point de Poisson, de paramètre $\lambda$.
+\item $p_n$ est la durée de pré-réservation de la réservation.
+\item $\sigma_n$ est la durée de réservation de la réservation.
 \end{itemize}
 
 
-La suite $(p_n,\sigma_n)$ est i.i.d et $(t_n)$ et $(p_n,\sigma_n)$ sont indépendantes. Notons $(p,\sigma)$ un couple de variables aléatoires ayant même loi que les  $(p_n,\sigma_n)$
+La suite $(p_n,\sigma_n)$ est i.i.d et $(t_n)$ et $(p_n,\sigma_n)$ sont indépendantes. 
+On note $(p,\sigma)$ un couple de variables aléatoires ayant même loi que les  $(p_n,\sigma_n)$
 
-On ajoute à ce triplet un 4-ème nombre,$\epsilon_n$, qui va correspondre à la validation de la réservation et vaut 1 si cette réservation ne rentre pas en conflit avec les réservations précédentes au moment de l'inscription.
+On ajoute à ce triplet un 4-ème nombre, $\epsilon_n$, qui va correspondre à la validation de la réservation et vaut 1 si cette réservation ne rentre pas en conflit avec les réservations précédentes au moment de l'inscription.
 \end{definition}
 
 \begin{definition}{Capacité réservée}
@@ -579,7 +591,7 @@ L'expression de $\epsilon_n$ est alors:
 \end{equation}
 \end{theorem}
 
-\subsection{Le cas avec capacité infinie}
+\subsection{Capacité infinie}
 
 Dans ce cas, toutes les réservations demandées sont acceptées dans le système, ainsi le $\epsilon_n$ introduit précédemment n'a plus d'utilité.
 
@@ -598,7 +610,7 @@ L(t) = \mathcal{N}(\mathbbm{1}_{B_t})
 
 
 
-\begin{theorem} {}
+\begin{theorem}[Espérance de L]
 
 
 
@@ -621,17 +633,12 @@ L(t) = \mathcal{N}(\mathbbm{1}_{B_t})
 &= \E{\min((t-p)^+,\sigma)}	
 \end{align*}
 
-L'égalité $(t-x)^+-(t-x-y)^+ =  \min((t-x)^+,y)$ se prouve par disjonction de cas
-\begin{itemize}
-\item Si $x>t$, alors $(t-x)^+= 0, (t-x-y)^+ = 0$.\\
-Ainsi $(t-x)^+-(t-x-y)^+ = 0 = (t-x)^+ = \min((t-x)^+,y)$
+L'égalité $(t-x)^+-(t-x-y)^+ =  \min((t-x)^+,y)$ se prouve de la manière suivante:
+\begin{align*}
+(t-x-y)^+ &= ((t-x)^+-y)^+ \text{ car } y>0\\
+&= (t-x)^+ - \min((t-x)^+,y)
+\end{align*}
 
-\item Si $x\leq t \leq x+y$, alors  $(t-x)^+= t-x, (t-x-y)^+ = 0$.\\
-Ainsi $(t-x)^+-(t-x-y)^+ = t-x = (t-x)^+ = \min((t-x)^+,y)$
-
-\item Si $x+y \leq t$, alors  $(t-x)^+= t-x, (t-x-y)^+ = y$.\\
-Ainsi $(t-x)^+-(t-x-y)^+ = y = \min((t-x)^+,y)$ 
-\end{itemize}
 \end{proof}
 
 \subsubsection{Limite fluide}
@@ -646,7 +653,7 @@ On appelle limite fluide de $(L(t)) $ la limite de $\bar{L}_N(t)$ pour N tendant
 
 \begin{theorem}[Limite du processus normalisé]
 \label{Limite_fluide}
-Le processus renormalisé tend en loi vers $\lambda\E{\min((t-p)^+,\sigma)}$, 
+Le processus renormalisé tend en loi vers $$x(t) = \lambda\E{\min((t-p)^+,\sigma)}.$$ 
 
 \end{theorem}
 
@@ -673,6 +680,7 @@ Soient $t,s>0$
 &=\int_{[t,t+s] \times K} \left(\mu(du,dx) - \mu(du,dx)\right)\\
 &= 0
 \end{align*}
+De plus $M_t$ est bien intégrable et adaptée pour sa filtration associée.
 
 $(M_t)$ est donc bien une martingale.
 Il s'agit désormais de calculer le processus croissant associé. On va pour cela calculer $\E{M_{t+s}^2 - M_t^2|\mathcal{F}_t}$ afin de déterminer le processus $N_t$ faisant de $(M_t^2-N_t)$ une martingale.
@@ -692,12 +700,12 @@ $<M>(t) = \mu(A_{t})$
 
 
 \end{proof}
-Ce résultat généralise le théorème 1.20 de [], présentant un résultat similaire pour des intensités produits sur $\R_+ \times K$.
+Ce résultat généralise le théorème 1.20 de \cite{robert2013stochastic}, présentant un résultat similaire pour des intensités produits sur $\R_+ \times K$.
 
 
 \begin{proof}[Démonstration du théorème \ref{Limite_fluide} ]
 
-Cette démonstration suit une démarche similaire à  celle effectuée dans l'article [] présentant un calcul similaire pour ce qui s'apparenterait à un système sans temps de pré-réservation.
+Cette démonstration suit une démarche similaire à  celle effectuée dans l'article \cite{fricker2007fluid} présentant un calcul similaire pour ce qui s'apparenterait à un système sans temps de pré-réservation.
 
 
 \begin{align*}
@@ -715,7 +723,7 @@ L_N(t) &= \int_{(\R^+)^3} \1{0\leq u+x \leq t} \mathcal{N}_N(du,dx,dy)\\ &\,\,\,
 \end{align*}
 
 où $\Phi_1$ est défini sur $\R_+^3$ par $\Phi_1(u,x,y) = (u+x,x,y)$, $\mathcal{N}_{N,\Phi_1}$  est un processus de poisson sur $\R_+^3$ d'intensité l'image par $\Phi_1$ de celle de $\mathcal{N}_N$, soit $\lambda N \1{u\geq x}du\nu(dx,dy)$, où $\nu$ correspond à la loi jointe de $(p,\sigma)$.\\
-Les notations sont similaires pour $\Phi_2$, défini sur $\R_+^3$ par $\Phi_2(u,x,y) = (u+x+y,x,y)$ et $\mathcal{N}_{N,\Phi_1}$ a pour intensité $\lambda N \1{u\geq x+y}du\nu(dx,dy)$.\\
+Les notations sont similaires pour $\Phi_2$, défini sur $\R_+^3$ par $\Phi_2(u,x,y) = (u+x+y,x,y)$ et $\mathcal{N}_{N,\Phi_2}$ a pour intensité $\lambda N \1{u\geq x+y}du\nu(dx,dy)$.\\
 
 
 Le Théorème \ref{processus_croissant} permet d'obtenir les deux résultats suivants:
@@ -742,12 +750,12 @@ On peut alors noter:
 
 $$\frac{L_N(t)}{N} = \frac{M_{N,\Phi_1}(t)}{N} - \frac{M_{N,\Phi_2}(t)}{N} + \lambda  \E{(t-p)^+-(t-p-\sigma)^+}$$
 
-Le terme martingale est négligeable quand N tend vers l'infini, la limite fluide tend alors vers $\lambda  \E{\min((t-p)^+,\sigma}$, ce qu'il reste maintenant à montrer rigoureusement.
+Le terme martingale est négligeable quand N tend vers l'infini, la limite fluide tend alors vers $\lambda  \E{(t-p)^+-(t-p-\sigma)^+} = \lambda  \E{\min((t-p)^+,\sigma}$, ce qu'il reste maintenant à montrer rigoureusement.
+\\
+\medskip
 
-Par la suite, pour simplifier l'écriture, on notera $x(s) = \lambda \E{L(s)}$.
-
-$\underset{0\leq s \leq t}{\sup} |\bar{C}_N(t)-x(s)| \leq \frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_1}(s)| + \frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_2}(s)| $
-
+$\underset{0\leq s \leq t}{\sup} |\bar{L}_N(t)-x(s)| \leq \frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_1}(s)| + \frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_2}(s)| $
+On va maintenant d'attacher à montrer que ces deux termes tendent vers 0 quand $N$ tend vers l'infini.
 \begin{align*}
 \E{\frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_1}(s)|} &\leq \frac{1}{N}\sqrt{\E{\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_1}(s)|^2}} \text{ par Cauchy-Scwartz}\\
 & \leq \frac{1}{N}\sqrt{4 \E{|M_{N,\Phi_1}(t)|^2}}  \text{ par inégalité de Doob}\\
@@ -765,16 +773,18 @@ De même, $$\E{\frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_2}(s)|} \un
 Ce qui entraîne que $\frac{1}{N}\underset{0\leq s \leq t}{\sup} |M_{N,\Phi_2}(s)|\overset{L^1}{\underset{N \to \infty}{\to}} 0.$\\
 
 
-Alors $$ \underset{0\leq s \leq t}{\sup} |\bar{C}_N(t)-x(s)|\overset{L^1}{\underset{N \to \infty}{\to}} 0.$$
+Alors $$ \underset{0\leq s \leq t}{\sup} |\bar{L}_N(t)-x(s)|\overset{L^1}{\underset{N \to \infty}{\to}} 0,$$
+
+ce qui conclut la convergence en loi de $\bar{L}_N$ vers $x$.
+
 
 
 \end{proof}
-
 \subsubsection{Modèle avec annulation}
 
 Dans un modèle plus poussé, on considère désormais que les clients ont la possibilité d'annuler leur réservation avant le début de celle ci ou encore de la finir prématurément.\\
 
-Pour modéliser cela, on considère alors un processus de poisson marqué sur $\R_+^5$, composé des 3 temps définis en précédemment auxquels on en ajoute 2:
+Pour modéliser cela, on considère alors un processus de poisson marqué sur $\R_+^5$, composé des 3 temps définis dans la Définition~\ref{def_res} auxquels on en ajoute 2:
 \begin{itemize}
 \item $a_n$, le temps d'annulation de la réservation.
 
@@ -789,7 +799,7 @@ Si $r_n < \sigma_n$, alors l'usager rend son véhicule au temps $t_n+p_n+r_n$ et
 Si $r_n \geq \sigma_n$, alors la réservation se termine comme prévu en $t_n+p_n+\sigma_n$\\
 \end{itemize} 
 
-La capacité occupée à l'instant t devient alors:
+Dans le cas d'une capacité infinie, la capacité occupée à l'instant t devient alors:
 $$L(t) = \sum_{n=0}^{\infty} \1{p_n\leq a_n}\mathbbm{1}_{\{t_n+p_n \leq t < t_n + p_n +\min(\sigma_n,r_n)\}}$$
 
 \begin{theorem}[Limite fluide du processus avec annulation]
@@ -803,12 +813,13 @@ Le processus avec annulation et retour anticipé tend en loi vers $$x(t) = \lamb
 La démonstration est très similaire à celle du théorème \ref{Limite_fluide}.
 
 
-Notons $\nu$ la loi jointe de $(p,\sigma,a,r)$
+Notons $\nu$ la loi jointe de $(p,\sigma,a,r)$.
+
 Il s'agit tout d'abord de décomposer $L_N(t)$ en deux intégrales,
 
 $$L_N(t) = \int_{\R_+^5} \1{0\leq u \leq t} \mathcal{N}_{N,\Phi_1}(du,dw,dx,dy,dz) + \int_{\R_+^5} \1{0\leq u \leq t} \mathcal{N}_{N,\Phi_2}(du,dw,dx,dy,dz)$$
 
-où $\mathcal{N}_{N,\Phi_1}$ est un poisson d'intensité $\lambda N \1{u\geq w}\1{w\leq y} du \nu(dw,dx,dy,dz)$ et  $\mathcal{N}_{N,\Phi_1}$ est un poisson d'intensité $\lambda N \1{u\geq w + \min(x,z)}\1{w\leq y} du \nu(dw,dx,dy,dz)$
+où $\mathcal{N}_{N,\Phi_1}$ est un poisson d'intensité $\lambda N \1{u\geq w}\1{w\leq y} du \nu(dw,dx,dy,dz)$ et  $\mathcal{N}_{N,\Phi_2}$ est un poisson d'intensité $\lambda N \1{u\geq w + \min(x,z)}\1{w\leq y} du \nu(dw,dx,dy,dz)$
 
 
 Le théorème \ref{processus_croissant} permet là encore de compenser ces intégrales afin d'obtenir deux martingales pour la filtration associée à chaque $\Phi_i$,
@@ -820,11 +831,13 @@ $$M_{N,\Phi_2}(t) = \int_{[0,t]\times (\R^+)^4}  \left(\mathcal{N}_{N,\Phi_1}(du
 
 dont le processus croissant associé est $$<M_{N,\Phi_2}>(t) = \lambda N \E{(t-p-\min(\sigma,r))^+\1{p<a}}.$$
 
-Alors, la fin de la démonstration s'adapte également et on obtient la convergence du processus renormalisé vers la limite fluide précisée.
+Alors, la fin de la démonstration est identique  et on obtient la convergence du processus renormalisé vers la limite fluide précisée.
 
 \end{proof}
 
-\begin{theorem}[Bijectivité et limites de $x$]
+On a donc pu déterminer la limite fluide d'un système de capacité infinie. Afin de déterminer la limite fluide d'un système de capacité finie, il est tout d'abord nécessaire d'étudier la limite fluide et en particulier de montrer sa croissance et sa bijectivité, puis de montrer la convergence des temps d'atteintes, ce qui est fait dans les deux théorèmes suivants.
+
+\begin{theorem}[Bijectivité et limites de la limite fluide]
 
 La fonction $x:t\in \R_+\to  \lambda\E{\1{p<a}\min((t-p)^+,\sigma,r)}$ est bijective de $[0,t_{\max}[$ vers $[0,C_{\max}[$
 
@@ -874,54 +887,37 @@ Ainsi la différence $x(t)-x(s)$ est strictement positive si et seulement si
 
 $$\mathbb{P}\left(p<a, s \leq \min(\sigma,r) + p\right) > 0. $$
 
-D'où $x$ est croissante, et même strictement croissante sur $]0,t_{\max}[$ où $t_{\max} = \inf \{t \in \R_+ | \mathbb{P}\left(s \leq \min(\sigma,r) + p\right|p<a) > 0$.
+D'où $x$ est croissante, et même strictement croissante sur $[0,t_{\max}[$ où $t_{\max} = \inf \{t \in \R_+ | \mathbb{P}\left(s \leq \min(\sigma,r) + p\right|p<a) > 0$.
 
-Ainsi $x$ est bijective sur $]0,t_{\max}[$.
+Ainsi $x$ est bijective de $[0,t_{\max}[$ vers $[0,x(t_{\max})[$
 \end{proof}
 
 
-\subsection{Capacité finie}
+\begin{theorem}[Convergence des temps d'atteintes]
+Soit $C \in [0,C_{\max}[$.
 
-Dans le cas d'un modèle présentant un nombre limité de voitures, différents régimes vont apparaître selon la capacité du système .
+On note $T_C^N = \inf\{s\in \R_+ | \bar{L}_N(s) \geq C\}$ le temps d'atteinte de C du processus $\bar{L}_N$ et $t_C = \inf\{s\in \R_+ | x(s) \geq C\} = x^{-1}(C)$ le temps d'atteinte de C de la limite fluide.
 
-Ainsi, si la capacité utilisée est sans cesse inférieure à la capacité maximale, on se retrouve dans un cas similaire à l'étude avec capacité infinie. On parle alors de cas sous-critique quand $C_{max} > \lambda \E{\min\left(((t-p)^+,\sigma\right)}$
-
-Dans le cas contraire, dit cas sur-critique, le système est saturé par la forte demande.
-
-
-
-
-\begin{theorem}
-
+Alors $$T_C^N\underset{N\to\infty}{\to}t_C$$
 \end{theorem}
 
 \begin{proof}
-
-
-Pour la suite, on note
-$$\forall C <C_{\max} T_C^N = \inf\{s\in \R_+ | \bar{L}_N(s) \geq C\}$$
-$$\forall C <C_{\max} \in \R_+ t_C = \inf\{s\in \R_+ | x(s) \geq C\} = x^{-1}(C)$$
-
-
-L'objectif est de montrer que, pour $C<C_{\max}$, $T_C^N$ converge en probabilité vers $t_c$.
-
-Soit $C<C_{\max}$.
-
+Soit $\eta>0$
 Soit $\epsilon > 0$ vérifiant $C+\epsilon < C_{\max}$.\\
 
-Par continuité de $K \to t_K$ en C, $\exists \delta > 0$ vérifiant $$\forall C^{'} \in R_+\,\,|C-C^{'}|\leq\delta \Rightarrow |t_C-t_{C^{'}}| \leq \epsilon.$$
+Par continuité de $K \to t_K$ en C, il existe un $\delta > 0$ vérifiant $$\forall C^{'} \in R_+\,\,|C-C^{'}|\leq\delta \Rightarrow |t_C-t_{C^{'}}| \leq \epsilon.$$
 
 
 
-Utilisons la convergence en loi démontrée au Théorème \ref{Limite_fluide_anul}.
+En utilisant la convergence en loi démontrée au Théorème~\ref{Limite_fluide_anul}
 
-$$\exists N_0 tq \forall N \geq N_0 \mathbb{P}\left(\underset{0\leq s \leq t}{sup} |\bar{L}_N(s) - x(s)| \geq \delta \right) < \eta$$
+$$\exists N_0\; tq\; \forall N \geq N_0\; \mathbb{P}\left(\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| \geq \delta \right) < \eta.$$
 
-Comme
+On a alors la suite d'implications suivante.
 \begin{align*}
 \underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| \leq \delta &\Rightarrow \forall s \leq t \,\,\, x(s) - \delta\leq\bar{L}_N(s) \leq x(s) + \delta\\
 &\Rightarrow  \forall s \leq t_{C-\delta}\,\,\, \bar{L}_N(s) \leq C\\
-&\,\,\,\text{et}\,\,\,\,\,  \forall s \leq t_{C+\delta}\,\,\, \bar{L}_N(s) > C    \text{par croissance de $x$}\\
+&\,\,\,\text{et}\,\,\,\,\,  \forall s \leq t_{C+\delta}\,\,\, \bar{L}_N(s) > C    \text{ par croissance de $x$}\\
 &\Rightarrow  t_{C-\delta} \leq T_C^N \leq t_{C+\delta}\\
 &\Rightarrow  t_{C}-\epsilon \leq T_C^N \leq t_{C}+\epsilon\\
 &\Rightarrow  |T_C^N-t_C| \leq \epsilon
@@ -930,6 +926,17 @@ Alors $$\forall N \geq N_0\;\; \mathbb{P}\left(|T_C^N-t_C| > \epsilon\right) <\e
 
 C'est donc que $$T_C^N \overset{\mathcal{L}}{\to} t_C.$$
 \end{proof}
+
+\subsection{Capacité finie}
+
+Dans le cas d'un modèle présentant un nombre limité de voitures, différents régimes vont apparaître selon la capacité du système.
+
+Dans le cas d'une capacité infinie, on a en effet vue apparaître une capacité d'occupation limite $C_{\max} = \lambda \E{\1{p<a}\min(\sigma,r)}$.
+
+Ainsi, si la capacité du système est supérieure à la capacité limite du système infini, on se retrouve dans un cas similaire à l'étude avec capacité infinie. On parle alors de cas sous-critique quand $C > C_{\max}$
+
+Dans le cas contraire, dit cas sur-critique, le système est saturé par la forte demande
+
 
 
 \subsubsection{Cas sous-critique ($C>C_{\max)}$)}
@@ -945,33 +952,65 @@ Soit $\epsilon>0$ tel que $C+\epsilon<C_{\max}$\\
 Soit $\eta >0$
 
 Par la convergence en loi de $\bar{L}_N(t)$ prouvée dans le théorème  \ref{Limite_fluide_anul}, il existe un $N_0\in \mathbb{N}$ vérifiant
-$$\mathbb{P}\left(\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| \geq \delta \right) < \eta.$$
+$$\mathbb{P}\left(\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| \geq \epsilon \right) < \eta.$$
 
 \begin{align}
-\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| < \delta & \Rightarrow \forall s \in [0,t]\; |\bar{L}_N(s) - x(s)| \geq \delta\\
-& \Rightarrow \forall s \in [0,t] \;\bar{L}_N(s) < x(s) + \delta \leq C + \delta <C_{\max}\\
-& \Rightarrow \bar{L}_N(s) = \hat{L}_N(s)
+\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| < \epsilon & \Rightarrow \forall s \in [0,t]\; |\bar{L}_N(s) - x(s)| \geq \delta\\
+& \Rightarrow \forall s \in [0,t] \;\bar{L}_N(s) < x(s) + \epsilon \leq C + \epsilon <C_{\max}\\
+& \Rightarrow \forall s \in [0,t]\;\bar{L}_N(s) = \hat{L}_N(s)
 \end{align}
 car avant que l'on atteigne C, et donc qu'une réservation soit refusée, les deux processus sont égaux
-D'où $$\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| < \delta  \Rightarrow \underset{0\leq s \leq t}{\sup} |\hat{L}_N(s) - x(s)| < \delta $$
+D'où $$\underset{0\leq s \leq t}{\sup} |\bar{L}_N(s) - x(s)| < \epsilon  \Rightarrow \underset{0\leq s \leq t}{\sup} |\hat{L}_N(s) - x(s)| < \epsilon $$
 
 
-De ceci, il vient que $$\mathbb{P}\left(\underset{0\leq s \leq t}{\sup} |\hat{L}_N(s) - x(s)| \geq \delta \right) < \eta.$$
+De ceci, il vient que pour $N>N_0$ $$\mathbb{P}\left(\underset{0\leq s \leq t}{\sup} |\hat{L}_N(s) - x(s)| \geq \epsilon \right) < \eta.$$
 \end{proof}
 
-\subsection{Cas sur-critique ($C<C_{\max)}$)}
+\subsubsection{Cas sur-critique ($C<C_{\max)}$)}
 Plaçons nous dans le cas $C<C_{\max}$
 \begin{theorem}[Limite fluide dans le cas sur-critique]
-Dans le cas sur-critique, la limite fluide du système est $$x(t) = \min(\lambda\E{\1{p<a}\min((t-p)^+,\sigma,r)},C)$$ 
+Dans le cas sur-critique, la limite fluide du système est $$\hat{x}(t) = \min(\lambda\E{\1{p<a}\min((t-p)^+,\sigma,r)},C)$$ 
 \end{theorem}
 \begin{proof}
 
+Considérons un processus d'arrivé $\mathcal{N}_N$, poisson marqué sur $\R_+^5$ d'intensité $\lambda N \nu(dw,dx,dy,dz)$, remplissant en même temps un système de capacité infinie et un système de capacité finie $NC$, dont on note respectivement $\bar{L}_N(t)$ et $\hat{L}_N(t)$ le nombre renormalisé de véhicules dans le système à l'instant t.
 
+Soit $\epsilon \in ]0,C[$\\
+Soit $\eta >0$
+
+
+Par la convergence en loi de $\bar{L}_N(t)$ prouvée dans le théorème  \ref{Limite_fluide_anul}, il existe un $N_0\in \mathbb{N}$ vérifiant
+$$\mathbb{P}\left(\underset{0\leq s \leq t_{C-\epsilon}}{\sup} |\bar{L}_N(s) - x(s)| \geq \epsilon \right) < \eta.$$
+
+\begin{align*}
+\underset{0\leq s  \leq t_{C-\epsilon}}{\sup} |\bar{L}_N(s) - x(s)| < \epsilon & \Rightarrow \forall s \in [0,t_{C-\epsilon}]\; |\bar{L}_N(s) - x(s)| \geq \epsilon\\
+& \Rightarrow \forall s \in [0,t_{C-\epsilon}] \;\bar{L}_N(s) < x(s) + \epsilon  < x(t_{C-\epsilon}) + \epsilon < C\\
+&\Rightarrow \forall s \in [0,t_{C-\epsilon}]\;\bar{L}_N(s) = \hat{L}_N(s)
+\end{align*}
+car avant que l'on atteigne C, et donc qu'une réservation soit refusée, les deux processus sont égaux
+D'où $$\underset{0\leq s \leq t_{C-\epsilon}}{\sup} |\bar{L}_N(s) - x(s)| < \epsilon  \Rightarrow \underset{0\leq s \leq t_{C-\epsilon}}{\sup} |\hat{L}_N(s) - x(s)| < \epsilon $$
+
+
+De ceci, il vient que pour $N>N_0$ $$\mathbb{P}\left(\underset{0\leq s \leq t_{C-\epsilon}}{\sup} |\hat{L}_N(s) - x(s)| \geq \epsilon \right) < \eta.$$
+
+Il y a donc convergence en loi de $\hat{L}_N$ vers $x$ sur $[0,t_C]$.
+
+Ensuite, 
+\begin{align*}
+\underset{0\leq s \leq t_{C-\epsilon}}{\sup} |\hat{L}_N(s) - x(s)| < \epsilon &\Rightarrow \forall s \in [0,t_{C-\epsilon}]\; |\hat{L}_N(s) - x(s)| < \epsilon\\
+&\Rightarrow \forall s \in [0,t_{C-\epsilon}]\;|\hat{L}_N(s) - x(s)| < \epsilon\\
+\end{align*}
 \end{proof}
+
+\section{Simulations numériques}
+
+
+
+\bibliography{biblio}
+\bibliographystyle{unsrt}
 
 \end{document}
 
-\subsubsection{Simulations numériques}
 
 Afin d'une part d'avoir un modèle plus facilement simulable et d'autre part de s'approcher de la réalité, j'ai choisi de considérer un temps discret pour les créneaux réservés. En effet, le système basé-stations ne permet que des réservations au quart d'heure près.
 

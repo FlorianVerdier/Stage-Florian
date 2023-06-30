@@ -1,0 +1,31 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}Présentation du service étudié}{2}%
+\contentsline {subsection}{\numberline {1.1}Principe général de Communauto}{2}%
+\contentsline {subsection}{\numberline {1.2}Fonctionnement du système et lexique utilisé}{2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Système free-floating}{3}%
+\contentsline {subsubsection}{\numberline {1.2.2}Système basé-stations}{3}%
+\contentsline {section}{\numberline {2}Analyse de données}{3}%
+\contentsline {subsection}{\numberline {2.1}Présentation des données}{3}%
+\contentsline {subsection}{\numberline {2.2}Nettoyage préalable des données}{4}%
+\contentsline {subsection}{\numberline {2.3}Fluctuations au cours du temps de la capacité utilisée}{5}%
+\contentsline {subsection}{\numberline {2.4}Étude du temps de réservation des usagers}{6}%
+\contentsline {subsubsection}{\numberline {2.4.1}Premières analyses}{6}%
+\contentsline {subsubsection}{\numberline {2.4.2}Détermination et lissage de la distribution}{7}%
+\contentsline {subsubsection}{\numberline {2.4.3}Détermination de la loi la mieux adaptée aux données}{8}%
+\contentsline {subsection}{\numberline {2.5}Étude des stations}{8}%
+\contentsline {subsubsection}{\numberline {2.5.1}Capacité des stations}{8}%
+\contentsline {subsubsection}{\numberline {2.5.2}Localisation des stations}{10}%
+\contentsline {subsection}{\numberline {2.6}Étude de la distance de trajet}{10}%
+\contentsline {subsection}{\numberline {2.7}Corrélation entre le temps de réservation et la distance parcourue pour obtenir une voiture}{11}%
+\contentsline {subsection}{\numberline {2.8}Étude du temps d'annulation}{11}%
+\contentsline {subsection}{\numberline {2.9}Étude du temps de pré-réservation}{12}%
+\contentsline {section}{\numberline {3}Modélisation mathématiques}{12}%
+\contentsline {subsection}{\numberline {3.1}Le modèle du "Tetris"}{13}%
+\contentsline {subsection}{\numberline {3.2}Modèle simplifié}{14}%
+\contentsline {subsection}{\numberline {3.3}Capacité infinie}{15}%
+\contentsline {subsubsection}{\numberline {3.3.1}Limite fluide}{16}%
+\contentsline {subsubsection}{\numberline {3.3.2}Modèle avec annulation}{20}%
+\contentsline {subsection}{\numberline {3.4}Capacité finie}{24}%
+\contentsline {subsubsection}{\numberline {3.4.1}Cas sous-critique ($C>C_{\qopname \relax m{max})}$)}{24}%
+\contentsline {subsubsection}{\numberline {3.4.2}Cas sur-critique ($C<C_{\qopname \relax m{max})}$)}{25}%
+\contentsline {section}{\numberline {4}Simulations numériques}{26}%
